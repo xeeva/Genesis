@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Edit",
+      "Write",
+      "Glob",
+      "Grep",
+      {{PERMISSION_ENTRIES}}
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {{FORMAT_HOOK}}
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Before finishing, check: (1) Are there failing tests? If so, mention them. (2) Are there uncommitted changes? If so, ask if the user wants to commit."
+          }
+        ]
+      }
+    ]
+  }
+}

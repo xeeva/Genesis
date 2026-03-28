@@ -1,0 +1,64 @@
+# {{PROJECT_NAME}}
+
+{{PROJECT_DESCRIPTION}}
+
+## Language and Locale
+
+- Use Australian English throughout: colour, behaviour, organisation, initialise, licence (noun), defense, analyse, catalogue, etc.
+- Never use em dashes. Use commas, semicolons, colons, or full stops instead.
+
+## Tech Stack
+
+{{STACK_DESCRIPTION}}
+
+## Project Structure
+
+```
+{{FOLDER_STRUCTURE}}
+```
+
+## Error Handling
+
+- Fail fast and loud. Explicit error handling, no silent swallowing.
+- Crash early in development, structured errors in production.
+- Never catch and ignore exceptions without logging.
+{{STACK_ERROR_PATTERNS}}
+
+## Code Standards
+
+- OWASP top 10 awareness: no command injection, XSS, SQL injection, or other common vulnerabilities.
+- Clean code: no god classes, no deep nesting (max 3 levels), no functions longer than 40 lines.
+- DRY and SOLID principles, but prefer three similar lines over a premature abstraction.
+- No dead code, no commented-out code, no TODO comments without linked issues.
+{{STACK_CODE_STANDARDS}}
+
+## Testing
+
+- Tests are mandatory. Run tests before committing.
+- Write tests for new functionality. Fix broken tests before adding features.
+- Test names describe the behaviour, not the implementation.
+{{STACK_TEST_CONFIG}}
+
+## Documentation
+
+- Maintain `docs/README.md` and `docs/architecture.md`.
+- Inline comments only where the logic is not self-evident.
+- Document the "why", not the "what".
+
+## Commit Style
+
+{{COMMIT_STYLE}}
+
+## Available Agents
+
+{{AGENT_LIST}}
+
+## Available Skills
+
+{{SKILL_LIST}}
+
+## Key Commands
+
+{{KEY_COMMANDS}}
+
+{{ADDITIONAL_RULES}}

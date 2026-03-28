@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs cat:*)",
+      "Bash(xargs ls:*)",
+      "Bash(find /home/xeeva/claude/claude-infra-bootstrap -type f \\\\\\(-name *.md -o -name *.json \\\\\\))"
+    ]
+  }
+}

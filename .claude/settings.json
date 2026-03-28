@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Edit",
+      "Write",
+      "Glob",
+      "Grep",
+      "Bash(mkdir:*)",
+      "Bash(git:*)",
+      "Bash(ls:*)",
+      "Bash(cp:*)",
+      "Bash(chmod:*)",
+      "Bash(test:*)",
+      "Bash(cat:*)"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "If you just completed generating a project, remind the user to cd into the project directory and start a new Claude session there. Also confirm the project was added to the registry."
+          }
+        ]
+      }
+    ]
+  }
+}
