@@ -1,0 +1,28 @@
+# OS files
+.DS_Store
+Thumbs.db
+*~
+._*
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-*
+
+# Environment
+.env
+.env.*
+
+# Claude local settings (user-specific overrides)
+.claude/settings.local.json
+
+# Node artifacts
+node_modules/
+
+# Logs
+*.log
+
+# Personal/marketing content
+docs/linkedin-article.*
