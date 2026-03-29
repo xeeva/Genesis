@@ -63,7 +63,7 @@ Pulls the latest Genesis updates from the remote repository. Checks for incoming
 
 ## Templates
 
-Templates live in `.claude/skills/genesis/templates/` and use `{{PLACEHOLDER}}` syntax. The `claude-infra-writer` agent fills these during generation.
+{% raw %}Templates live in `.claude/skills/genesis/templates/` and use `{{PLACEHOLDER}}` syntax. The `claude-infra-writer` agent fills these during generation.{% endraw %}
 
 | Template | Purpose |
 |----------|---------|

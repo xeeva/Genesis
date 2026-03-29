@@ -111,6 +111,7 @@ Templates live in `.claude/skills/genesis/templates/` and use `{{PLACEHOLDER}}` 
 
 ### Existing Placeholders
 
+{% raw %}
 **CLAUDE.md templates:**
 
 | Placeholder | Description |
@@ -164,6 +165,7 @@ Templates live in `.claude/skills/genesis/templates/` and use `{{PLACEHOLDER}}` 
 | `{{AGENT_NAMES}}` | Available agent names |
 | `{{SKILL_NAMES}}` | Available skill names |
 | `{{MCP_SERVER_ENTRIES}}` | MCP server configuration blocks |
+{% endraw %}
 
 ## Adding New Skills
 

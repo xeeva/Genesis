@@ -205,7 +205,7 @@ Generation creates the entire project in a single pass. Genesis reads its templa
 
 ### Template System
 
-Genesis uses templates from `.claude/skills/genesis/templates/` as starting points. Each template contains placeholders (e.g. `{{PROJECT_NAME}}`, `{{STACK}}`) that are filled with project-specific values. The templates are:
+{% raw %}Genesis uses templates from `.claude/skills/genesis/templates/` as starting points. Each template contains placeholders (e.g. `{{PROJECT_NAME}}`, `{{STACK}}`) that are filled with project-specific values.{% endraw %} The templates are:
 
 - `CLAUDE.md.tmpl`: the project's CLAUDE.md skeleton
 - `settings.json.tmpl`: permissions and hooks skeleton
