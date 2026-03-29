@@ -19,17 +19,17 @@ When the context window fills up, Claude Code automatically **compacts** (summar
 
 ## Plan Comparison
 
-| Feature | Pro | Max | ProMax |
-|---------|-----|-----|--------|
-| **Context window** | 200k tokens | 200k tokens | 1M tokens |
-| **Scaffold profile** | lean | standard | full |
-| **Domain agents** | 1-2 per project | 2-3 per project | 3-4 per project |
-| **Dynamic skills** | 1-2 per project | 2-3 per project | 3-4 per project |
-| **CLAUDE.md template** | Condensed | Standard | Detailed |
-| **Memory files** | Consolidated (1 file) | Full (3 files) | Full (3 files) |
-| **Scaffold cost** | ~5-8k tokens (2.5-4%) | ~10-15k tokens (5-7.5%) | ~15-25k tokens (1.5-2.5%) |
-| **Effective working context** | ~190k tokens | ~185k tokens | ~975k tokens |
-| **Session length before compaction** | Moderate | Moderate | Extended |
+| | Pro | Max | ProMax |
+|:--|:--|:--|:--|
+| **Context** | 200k | 200k | 1M |
+| **Profile** | lean | standard | full |
+| **Domain agents** | 1-2 | 2-3 | 3-4 |
+| **Dynamic skills** | 1-2 | 2-3 | 3-4 |
+| **CLAUDE.md** | Condensed | Standard | Detailed |
+| **Memory** | 1 file | 3 files | 3 files |
+| **Scaffold cost** | ~5-8k (2.5-4%) | ~10-15k (5-7.5%) | ~15-25k (1.5-2.5%) |
+| **Working context** | ~190k | ~185k | ~975k |
+| **Sessions** | Moderate | Moderate | Extended |
 | **Rate limits** | Standard | Higher | Highest |
 
 Note: API key users have variable context windows depending on the model. Genesis asks for the context budget during setup.
@@ -101,17 +101,17 @@ API key users are not on a subscription plan and are billed per token. Genesis a
 
 Here is what consumes context in a generated project, so you can understand where your tokens go:
 
-| Component | Loaded When | Estimated Cost | Present in Lean |
-|-----------|------------|----------------|-----------------|
-| CLAUDE.md | Every message | ~2-4k tokens | Yes (condensed, ~2k) |
-| settings.json | Every message | ~300-500 tokens | Yes |
-| MEMORY.md (index) | Every message | ~200-400 tokens | Yes (consolidated) |
-| user-profile.md | Every message | ~200-400 tokens | No (inline in MEMORY.md) |
-| project-context.md | Every message | ~300-600 tokens | No (inline in MEMORY.md) |
-| Workflow agent (each) | When spawned | ~600-800 tokens | Yes (3 agents) |
-| Domain agent (each) | When spawned | ~800-1200 tokens | Yes (1-2 agents) |
-| Skill (each) | When invoked | ~400-800 tokens | Yes (5-6 skills) |
-| MCP tool schemas | Every message (if configured) | ~500-2000 tokens | Yes (if needed) |
+| Component | Loaded | Cost | In Lean? |
+|:--|:--|:--|:--|
+| CLAUDE.md | Always | ~2-4k | Yes (~2k) |
+| settings.json | Always | ~300-500 | Yes |
+| MEMORY.md | Always | ~200-400 | Yes (consolidated) |
+| user-profile.md | Always | ~200-400 | No (inline) |
+| project-context.md | Always | ~300-600 | No (inline) |
+| Workflow agent (x3) | On spawn | ~600-800 each | Yes |
+| Domain agent (x1-4) | On spawn | ~800-1200 each | Yes (1-2) |
+| Skill (x5-8) | On invoke | ~400-800 each | Yes (5-6) |
+| MCP schemas | Always (if configured) | ~500-2000 | If needed |
 
 The "Every message" components are always in context. Agents and skills are loaded on demand, so they only consume context when you use them.
 

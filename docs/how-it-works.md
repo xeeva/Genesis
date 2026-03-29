@@ -57,12 +57,12 @@ Genesis adjusts the size and complexity of the generated scaffold based on your 
 
 Claude Code loads your project's CLAUDE.md, settings, and memory files at the start of every session. When you invoke an agent, its definition is loaded too. Skills are loaded when invoked. All of this draws from your context window, which varies significantly by plan:
 
-| Plan | Context Window | What That Means |
-|------|---------------|-----------------|
-| **Pro** | 200k tokens | Enough for focused work sessions. Infrastructure needs to be lean to leave room for complex tasks, large file reads, and multi-step workflows. |
-| **Max** | 200k tokens | Same context window as Pro, but with higher rate limits and more messages per day. A moderate scaffold works well. |
-| **ProMax** | 1M tokens | Five times the context of Pro/Max. Room for comprehensive infrastructure, detailed CLAUDE.md files, full agent suites, and extended working sessions without compaction. |
-| **API** | Varies | Depends on the model and configuration. Genesis asks for the context budget during setup. |
+| Plan | Context | Impact |
+|:--|:--|:--|
+| **Pro** | 200k | Infrastructure needs to be lean to leave room for complex tasks and multi-step workflows. |
+| **Max** | 200k | Same context as Pro, but higher rate limits. A moderate scaffold works well. |
+| **ProMax** | 1M | Five times Pro/Max. Room for comprehensive infrastructure and extended sessions. |
+| **API** | Varies | Depends on model and configuration. Genesis asks during setup. |
 
 A full scaffold (7 agents, 7 skills, detailed CLAUDE.md, 3 memory files, MCP configs) can consume 15-25k tokens. On a Pro plan, that is 7-12% of the entire context window gone before you type your first message. On ProMax, it is 1.5-2.5%, leaving plenty of room.
 
@@ -70,11 +70,11 @@ A full scaffold (7 agents, 7 skills, detailed CLAUDE.md, 3 memory files, MCP con
 
 Genesis maps each plan tier to a scaffold profile that balances infrastructure richness against context budget:
 
-| Profile | Plan Tier | Context Window | Domain Agents | Dynamic Skills | CLAUDE.md Style | Est. Cost |
-|---------|-----------|----------------|---------------|----------------|-----------------|-----------|
-| **lean** | Pro | 200k | 1-2 | 1-2 | Condensed | ~5-8k tokens (2.5-4%) |
-| **standard** | Max | 200k | 2-3 | 2-3 | Standard | ~10-15k tokens (5-7.5%) |
-| **full** | ProMax / API | 1M | 3-4 | 3-4 | Detailed | ~15-25k tokens (1.5-2.5%) |
+| Profile | Plan | Context | Agents | Skills | CLAUDE.md | Cost |
+|:--|:--|:--|:--|:--|:--|:--|
+| **lean** | Pro | 200k | 1-2 | 1-2 | Condensed | ~5-8k (2.5-4%) |
+| **standard** | Max | 200k | 2-3 | 2-3 | Standard | ~10-15k (5-7.5%) |
+| **full** | ProMax/API | 1M | 3-4 | 3-4 | Detailed | ~15-25k (1.5-2.5%) |
 
 The estimated cost is shown in the plan output (Phase 2) so you can see exactly how much of your context window the scaffold will use.
 

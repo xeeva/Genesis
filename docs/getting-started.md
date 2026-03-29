@@ -80,14 +80,14 @@ Genesis asks about your platform:
 
 Genesis also asks which Claude plan you are on (Pro, Max, ProMax, or API key). This determines the **scaffold profile**, which controls how much infrastructure Genesis generates for each project:
 
-| Plan | Scaffold Profile | What You Get |
-|------|-----------------|--------------|
-| Pro | lean | Condensed CLAUDE.md, 1-2 domain agents, 1-2 dynamic skills. Optimised to leave maximum context for your work. |
-| Max | standard | Full CLAUDE.md, 2-3 domain agents, 2-3 dynamic skills. A solid balance of infrastructure and context headroom. |
-| ProMax | full | Detailed CLAUDE.md, 3-4 domain agents, 3-4 dynamic skills, extended context sections. Takes full advantage of the 1M context window. |
-| API | ask | Genesis asks for your context budget and recommends a profile. |
+| Plan | Profile | Context | Agents | Skills |
+|------|---------|---------|--------|--------|
+| Pro | lean | 200k | 1-2 domain | 1-2 dynamic |
+| Max | standard | 200k | 2-3 domain | 2-3 dynamic |
+| ProMax | full | 1M | 3-4 domain | 3-4 dynamic |
+| API | ask | varies | varies | varies |
 
-The ProMax plan with its 1M context window provides the best Genesis experience, with room for comprehensive infrastructure and extended working sessions without compaction.
+The ProMax plan with its 1M context window provides the best Genesis experience: comprehensive infrastructure, extended working sessions, and no need for context compaction.
 
 Finally, Genesis asks where you want projects to be created (default `~/claude/`). This becomes the base directory for all generated projects. You can override this per-project during the interview phase.
 
