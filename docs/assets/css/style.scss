@@ -89,19 +89,18 @@ body {
 
 /* Sidebar */
 .docs-sidebar {
-  width: 0;
-  min-width: 0;
+  width: var(--g-sidebar-width);
+  min-width: var(--g-sidebar-width);
   flex-shrink: 0;
+  border-right: 1px solid var(--g-border);
 }
 
 .sidebar-inner {
-  position: fixed;
+  position: sticky;
   top: 0;
-  width: var(--g-sidebar-width);
   height: 100vh;
   padding: 1.5rem 0 2rem 1rem;
   overflow-y: auto;
-  border-right: 1px solid var(--g-border);
   background-color: var(--g-bg-primary);
 }
 
@@ -169,7 +168,6 @@ body {
   padding: 2rem 2.5rem !important;
   max-width: none !important;
   margin: 0 !important;
-  margin-left: var(--g-sidebar-width) !important;
 }
 
 /* Headings */
