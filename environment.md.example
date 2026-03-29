@@ -1,0 +1,26 @@
+# Environment
+
+Hosting environment configuration. This file is preserved across Genesis updates.
+Run the first-time setup again or edit this file directly to change settings.
+
+## Platform
+
+- **OS:** <Linux | macOS | Windows | WSL>
+- **Shell:** <bash | zsh | powershell | cmd>
+- **Distribution:** <e.g. Ubuntu/Debian, Fedora, Arch, Homebrew-based, N/A>
+- **WSL:** <Yes | No>
+
+## Paths
+
+- **Genesis directory:** ~/claude/genesis/
+- **Project target:** ~/claude/<project-name>/
+- **Memory path:** ~/.claude/projects/-home-xeeva-claude-<project-name>/memory/
+
+## Package Manager
+
+- **System:** <apt | brew | dnf | pacman | scoop | chocolatey | N/A>
+- **Node.js:** <npm | yarn | pnpm>
+
+## Notes
+
+- <Any platform-specific notes, e.g. "WSL2 with Docker Desktop backend", "Apple Silicon", etc.>

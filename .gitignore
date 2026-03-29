@@ -26,3 +26,7 @@ node_modules/
 
 # Personal/marketing content
 docs/linkedin-article.*
+
+# User-specific configuration (preserved across updates)
+personalisation.md
+environment.md

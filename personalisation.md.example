@@ -1,0 +1,29 @@
+# Personalisation
+
+User preferences that govern how Genesis behaves and what it generates.
+This file is preserved across Genesis updates. Edit it at any time.
+
+## Language and Locale
+
+- **Locale:** Australian English (colour, behaviour, organisation, initialise, licence, defence, analyse, catalogue)
+- **Em dashes:** Never use em dashes. Use commas, semicolons, colons, or full stops instead.
+
+## Output Style
+
+- **Verbosity:** Terse and direct. Reasoning only when it adds value.
+- **Interaction style:** Collaborative. Brief reasoning for non-obvious choices, explain trade-offs, but don't over-explain.
+
+## User Profile
+
+- **Role:** <your role, e.g. Tech lead, Senior developer, Student>
+- **Experience:** <your experience level and languages>
+- **Testing:** Tests are mandatory, no exceptions
+- **Documentation:** Structured docs (README + architecture.md) in every project
+
+## Generated Project Defaults
+
+These defaults are seeded into every generated project's memory and CLAUDE.md:
+
+- **Commit style:** Contextual. Conventional Commits for libraries/services, plain imperative for scripts/tools.
+- **Error handling:** Fail fast and loud. Explicit error handling, no silent swallowing.
+- **Code standards:** OWASP top 10 awareness, clean code (no god classes, max 3 nesting levels, max 40 line functions), DRY/SOLID.

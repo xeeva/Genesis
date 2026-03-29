@@ -12,12 +12,15 @@ You are executing the Genesis bootstrap workflow. Follow these phases strictly.
 
 Read the user's request carefully. Extract everything you can before asking questions.
 
+**Before interviewing:** Read `personalisation.md` and `environment.md` from the Genesis root. These provide user preferences and platform details. If either file is missing, trigger first-time setup (see CLAUDE.md) before proceeding.
+
 **Required information:**
 1. Project name (kebab-case)
 2. Purpose (one sentence)
 3. Tech stack (language, framework, runtime)
 4. Key integrations (databases, APIs, auth, external services)
-5. Hosting environment (WSL, native Linux, macOS, or Windows)
+
+Hosting environment is already captured in `environment.md`. Do not re-ask.
 
 **Rules:**
 - If the user provided 3+ of these, ask only what's missing (1-2 questions max)

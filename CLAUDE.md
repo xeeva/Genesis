@@ -22,7 +22,47 @@ When starting a new conversation in this workspace, display this banner before a
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 
-Then wait for the user's input. Do not proceed with the interview until the user provides a request.
+Then check if first-time setup is needed (see below). If setup is complete, wait for the user's input.
+
+## First-Time Setup
+
+Before anything else, check whether `personalisation.md` and `environment.md` exist in the Genesis root directory.
+
+**If either file is missing**, guide the user through first-time setup:
+
+1. **Environment setup** (if `environment.md` is missing):
+   - Ask: "What platform are you running on?" (Linux, macOS, Windows, WSL)
+   - Ask: "What shell do you use?" (bash, zsh, PowerShell)
+   - Detect or ask about package manager (apt, brew, dnf, scoop, etc.)
+   - Write `environment.md` with their answers (use `environment.md.example` as the template)
+
+2. **Personalisation** (if `personalisation.md` is missing):
+   - Present the current defaults: "Genesis is configured with Australian English, no em dashes, terse output, and mandatory testing. Would you like to keep these defaults or customise?"
+   - If they want to customise, ask about:
+     - Locale (Australian English, British English, American English)
+     - Em dash preference
+     - Output verbosity (terse, moderate, detailed)
+     - Role and experience level
+   - Write `personalisation.md` with their answers (use `personalisation.md.example` as the template)
+
+3. **Prerequisite check:**
+   - Verify: `claude`, `git`, `node` are installed
+   - Report any missing tools with installation guidance for their platform
+   - Do not block setup if tools are missing; just warn
+
+4. Confirm setup is complete and display: "Setup complete. You can re-run setup at any time by deleting `personalisation.md` or `environment.md` and starting a new session."
+
+**If both files exist**, skip setup and proceed normally. Read both files to load the user's preferences and environment.
+
+## User Configuration Files
+
+Genesis separates updatable code from user-specific configuration:
+
+- **`personalisation.md`** -- locale, output style, user profile, project defaults. Read this file at the start of every session and apply its preferences to all output and generated content.
+- **`environment.md`** -- platform, shell, paths, package manager. Read this file and use it to tailor commands, paths, and dependency guidance.
+- **`personalisation.md.example`** and **`environment.md.example`** -- templates shipped with Genesis. These are version-controlled and updated with Genesis. The actual `.md` files are gitignored and preserved across updates.
+
+When generating projects, seed the personalisation preferences into the generated project's CLAUDE.md and memory files instead of hardcoded values.
 
 ## Workflow
 
@@ -32,12 +72,13 @@ Follow these four phases in order. Do not skip phases.
 
 Extract as much as you can from the user's opening message before asking questions. Only ask what remains unknown. Cap at 2-4 questions maximum.
 
+Read `personalisation.md` and `environment.md` before starting the interview. The hosting environment is already known from setup, so do not re-ask it.
+
 Gather:
 1. **Project name** (kebab-case, concise)
 2. **Purpose** (one sentence describing what the project does)
 3. **Tech stack** (language, framework, runtime)
 4. **Key integrations** (databases, APIs, auth providers, message queues, external services)
-5. **Hosting environment** (WSL, native Linux, macOS, or Windows) -- this affects path handling, shell commands, available tools, and dependency management
 
 If the user's opening message already covers most of these, ask only 1-2 clarifying questions. Never ask what the user has already stated.
 
@@ -82,11 +123,10 @@ Use the templates in `.claude/skills/genesis/templates/` as starting points. Use
 
 ## Global Rules (apply to ALL generated projects)
 
-Every generated CLAUDE.md must include these rules verbatim:
+Every generated CLAUDE.md must include these rules. The language/locale and output style sections are sourced from `personalisation.md`, not hardcoded here.
 
 ### Language and Locale
-- Use Australian English throughout: colour, behaviour, organisation, initialise, licence (noun), defense, analyse, catalogue, etc.
-- Never use em dashes. Use commas, semicolons, colons, or full stops instead.
+Read from `personalisation.md` > Language and Locale section. Apply the user's chosen locale and formatting preferences to all generated content.
 
 ### Error Handling
 - Fail fast and loud. Explicit error handling, no silent swallowing.
@@ -110,37 +150,24 @@ Every generated CLAUDE.md must include these rules verbatim:
 - Document the "why", not the "what".
 
 ### Commit Style
-- Contextual to the project type. Use Conventional Commits (feat:, fix:, chore:, etc.) for libraries, packages, and services. Use plain imperative for scripts and small tools.
-- Commit messages explain "why", not "what".
+Read from `personalisation.md` > Generated Project Defaults > Commit style. Default: Conventional Commits for libraries/services, plain imperative for scripts/tools.
 
 ## User Profile
 
-Seed this into every generated project's memory:
-
-- Tech lead / architect
-- Collaborative interaction style: brief reasoning for non-obvious choices, explain trade-offs, but don't over-explain
-- Polyglot: stack varies per project
-- Tests are mandatory
-- Prefers terse, direct output with reasoning only when it adds value
+Seed into every generated project's memory from `personalisation.md` > User Profile and Output Style sections. Do not hardcode profile values here.
 
 ## Constraints
 
-- Target directory: `~/claude/<project-name>/` on Linux, macOS, and WSL. On native Windows (non-WSL), use `%USERPROFILE%\claude\<project-name>\`.
+- Target directory: read from `environment.md` > Paths > Project target. Default: `~/claude/<project-name>/`.
 - Greenfield only. If the target directory already exists, refuse and explain. Never overwrite.
 - Never modify Genesis's own files during generation.
-- All generated content uses Australian English.
-- Memory path for generated projects: `~/.claude/projects/-home-xeeva-claude-<project-name>/memory/`
+- Language and locale: read from `personalisation.md`. Apply to all generated content.
+- Memory path for generated projects: read from `environment.md` > Paths > Memory path.
+- Never overwrite `personalisation.md` or `environment.md` during any operation.
 
 ## Prerequisites
 
-Before generating a project, verify the user has the required tools installed. If any are missing, list them clearly and provide installation guidance for their hosting environment:
-
-- **Claude Code CLI** (v1.x+) -- the AI coding assistant from Anthropic
-- **git** (v2.x+) -- version control
-- **Node.js** (v18+) -- required by Claude Code and MCP servers
-- **A supported shell** -- bash or zsh (Linux/macOS/WSL), PowerShell (Windows)
-
-Stack-specific tools (e.g. Python, Go, Rust, Ruby, Java) should be checked and reported during Phase 3 based on the chosen stack.
+Prerequisites are checked during first-time setup (see above). Stack-specific tools (e.g. Python, Go, Rust, Ruby, Java) are checked during Phase 3 based on the chosen stack. Installation guidance is tailored to the platform in `environment.md`.
 
 ## Agent Selection Guidelines
 
