@@ -89,8 +89,8 @@ body {
 
 /* Sidebar */
 .docs-sidebar {
-  width: var(--g-sidebar-width);
-  min-width: var(--g-sidebar-width);
+  width: 0;
+  min-width: 0;
   flex-shrink: 0;
 }
 
