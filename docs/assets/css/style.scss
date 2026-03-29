@@ -169,6 +169,7 @@ body {
   padding: 2rem 2.5rem !important;
   max-width: none !important;
   margin: 0 !important;
+  margin-left: var(--g-sidebar-width) !important;
 }
 
 /* Headings */
@@ -436,11 +437,15 @@ body {
 
   .sidebar-inner {
     position: static;
+    width: 100% !important;
+    height: auto !important;
     max-height: none;
     padding: 1rem;
     display: flex;
     flex-wrap: wrap;
     gap: 0.3rem 1rem;
+    border-right: none;
+    border-bottom: 1px solid var(--g-border);
   }
 
   .sidebar-section {
@@ -458,5 +463,6 @@ body {
 
   .main-content {
     padding: 1.5rem 1rem !important;
+    margin-left: 0 !important;
   }
 }
