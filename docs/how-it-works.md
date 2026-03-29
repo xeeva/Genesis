@@ -5,10 +5,6 @@ title: How It Works
 
 # How It Works
 
-[Home](.) | [Start](getting-started) | [Architecture](architecture) | [Projects](generated-project) | [Plans](plans-and-context) | [Customise](customisation) | [Update](updating) | [FAQ](faq)
-
----
-
 Genesis follows a strict four-phase workflow. Each phase completes before the next begins, and you have the opportunity to review and adjust at key decision points.
 
 ![Genesis Workflow](images/genesis-workflow.svg)

@@ -5,10 +5,6 @@ title: Generated Project Anatomy
 
 # Generated Project Anatomy
 
-[Home](.) | [Start](getting-started) | [How It Works](how-it-works) | [Architecture](architecture) | [Plans](plans-and-context) | [Customise](customisation) | [Update](updating) | [FAQ](faq)
-
----
-
 This document describes every file and directory that Genesis creates when it scaffolds a new project.
 
 ![Generated Project Structure](images/generated-project-arch.svg)

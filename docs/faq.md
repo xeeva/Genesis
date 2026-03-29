@@ -5,10 +5,6 @@ title: FAQ
 
 # FAQ and Troubleshooting
 
-[Home](.) | [Start](getting-started) | [How It Works](how-it-works) | [Architecture](architecture) | [Projects](generated-project) | [Plans](plans-and-context) | [Customise](customisation) | [Update](updating)
-
----
-
 ## Frequently Asked Questions
 
 ### What platforms are supported?

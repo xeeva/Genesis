@@ -5,10 +5,6 @@ title: Updating Genesis
 
 # Updating Genesis
 
-[Home](.) | [Start](getting-started) | [How It Works](how-it-works) | [Architecture](architecture) | [Projects](generated-project) | [Plans](plans-and-context) | [Customise](customisation) | [FAQ](faq)
-
----
-
 Genesis receives updates through its git repository. Updates bring new stack profiles, improved templates, additional agents, bug fixes, and documentation improvements.
 
 ## Using the /update Skill

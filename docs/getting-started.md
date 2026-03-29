@@ -5,10 +5,6 @@ title: Getting Started
 
 # Getting Started
 
-[Home](.) | [How It Works](how-it-works) | [Architecture](architecture) | [Projects](generated-project) | [Plans](plans-and-context) | [Customise](customisation) | [Update](updating) | [FAQ](faq)
-
----
-
 ## Prerequisites
 
 ### Claude Code CLI (v1.x+)

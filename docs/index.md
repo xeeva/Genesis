@@ -3,10 +3,6 @@ layout: default
 title: Genesis
 ---
 
-[Start](getting-started) | [How It Works](how-it-works) | [Architecture](architecture) | [Projects](generated-project) | [Plans](plans-and-context) | [Customise](customisation) | [Update](updating) | [FAQ](faq)
-
----
-
 ## What is Genesis?
 
 Genesis is a Claude Code project that creates other Claude Code projects. You describe what you want to build, and Genesis scaffolds a fully-equipped development environment -- agents, skills, hooks, memory, MCP server configs, and application boilerplate -- all tailored to your chosen stack.

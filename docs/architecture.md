@@ -5,10 +5,6 @@ title: Architecture
 
 # Architecture
 
-[Home](.) | [Start](getting-started) | [How It Works](how-it-works) | [Projects](generated-project) | [Plans](plans-and-context) | [Customise](customisation) | [Update](updating) | [FAQ](faq)
-
----
-
 This document describes the internal architecture of Genesis itself, not the projects it generates. For the anatomy of a generated project, see [generated project](generated-project).
 
 ## Overview

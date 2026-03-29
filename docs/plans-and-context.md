@@ -5,10 +5,6 @@ title: Claude Plans and Context
 
 # Claude Plans and Context
 
-[Home](.) | [Start](getting-started) | [How It Works](how-it-works) | [Architecture](architecture) | [Projects](generated-project) | [Customise](customisation) | [Update](updating) | [FAQ](faq)
-
----
-
 Genesis is designed to work across all Claude plans that support Claude Code. It automatically adapts the size and complexity of the generated scaffold to make the best use of your available context window.
 
 ## How Context Works in Claude Code

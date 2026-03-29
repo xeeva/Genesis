@@ -5,10 +5,6 @@ title: Customisation
 
 # Customisation
 
-[Home](.) | [Start](getting-started) | [How It Works](how-it-works) | [Architecture](architecture) | [Projects](generated-project) | [Plans](plans-and-context) | [Update](updating) | [FAQ](faq)
-
----
-
 Genesis is designed to be extended. You can add new stack profiles, agent archetypes, templates, and skills without modifying the core workflow.
 
 ## Adding a New Stack Profile
