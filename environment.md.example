@@ -10,6 +10,12 @@ Run the first-time setup again or edit this file directly to change settings.
 - **Distribution:** <e.g. Ubuntu/Debian, Fedora, Arch, Homebrew-based, N/A>
 - **WSL:** <Yes | No>
 
+## Claude Plan
+
+- **Tier:** <Free | Pro | Max | ProMax | API>
+- **Context window:** <200000 | 1000000>
+- **Scaffold profile:** <lean | standard | full>
+
 ## Paths
 
 - **Genesis directory:** ~/claude/genesis/

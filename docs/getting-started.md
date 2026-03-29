@@ -78,6 +78,8 @@ Genesis asks about your platform:
 - **Shell**: bash, zsh, or PowerShell
 - **Package manager**: apt, brew, dnf, pacman, scoop, etc.
 
+Genesis also asks which Claude plan you are on (Pro, Max, ProMax, or API key). This determines the scaffold profile, which controls how much infrastructure is generated to fit within your context window budget.
+
 It writes these answers to `environment.md` in the Genesis root. This file is gitignored and preserved across updates.
 
 ### Step 2: Personalisation

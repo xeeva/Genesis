@@ -89,6 +89,14 @@ If you want to add Claude Code infrastructure to an existing project, you can ge
 
 Genesis limits domain agents to 3-4 per project to avoid overwhelming the workspace. Combined with the 3 workflow agents that are always included, a typical project has 6-7 agents total. You can add more agents manually after generation if needed.
 
+### How does Genesis handle different Claude plans?
+
+Genesis detects your Claude plan tier during first-time setup and assigns a scaffold profile (lean, standard, or full). The profile controls how many agents and skills are generated, what CLAUDE.md template is used, and how memory files are structured. Pro users get a lean scaffold that minimises context usage. ProMax and API users get the full scaffold with all available infrastructure.
+
+### Can I change my scaffold profile after setup?
+
+Yes. Edit `environment.md` in the Genesis root directory and change the `Scaffold profile` value under `## Claude Plan` to `lean`, `standard`, or `full`. The change takes effect on the next project you create. You can also override the profile during the plan phase by asking for a different level of scaffold complexity.
+
 ### Does Genesis support monorepos or multi-package projects?
 
 Genesis generates single-project scaffolds. For monorepos, you can generate each package separately and then restructure the workspace. Alternatively, describe a monorepo layout during the interview phase; Genesis will do its best to accommodate, though this is not its primary use case.

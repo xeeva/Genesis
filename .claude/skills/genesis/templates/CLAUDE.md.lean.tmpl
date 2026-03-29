@@ -1,0 +1,40 @@
+# {{PROJECT_NAME}}
+
+{{PROJECT_DESCRIPTION}}
+
+## Standards
+
+- Australian English throughout: colour, behaviour, organisation, initialise, licence (noun), defence, analyse, catalogue
+- Never use em dashes; use commas, semicolons, colons, or full stops
+- Fail fast and loud; explicit error handling, no silent swallowing
+- OWASP top 10 awareness; no command injection, XSS, SQL injection
+- Clean code: max 3 levels of nesting, max 40-line functions, DRY and SOLID
+- No dead code, no commented-out code, no TODO comments without linked issues
+- Tests are mandatory; run tests before committing; test names describe behaviour
+- Inline comments only where logic is not self-evident; document the "why"
+{{STACK_CODE_STANDARDS}}
+{{STACK_ERROR_PATTERNS}}
+{{STACK_TEST_CONFIG}}
+
+## Tech Stack
+
+{{STACK_DESCRIPTION}}
+
+## Commit Style
+
+{{COMMIT_STYLE}}
+
+## Agents and Skills
+
+| Type | Name | Purpose |
+|------|------|---------|
+{{AGENT_SKILL_TABLE}}
+
+## Context Management
+
+This project is configured for a {{CONTEXT_WINDOW}} context window. To stay within budget:
+- Use `/compact` when context usage exceeds 60%
+- Prefer targeted agent invocations over broad reviews
+- The statusline shows current context usage
+
+{{ADDITIONAL_RULES}}

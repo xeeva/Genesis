@@ -8,8 +8,9 @@ You are conducting a brief intake interview for a new software project. Your goa
 2. **Purpose** -- one sentence describing what the project does and who it serves
 3. **Tech stack** -- language, framework, runtime version preferences
 4. **Key integrations** -- databases, APIs, auth providers, message queues, external services
+5. **Scaffold profile** -- read from `environment.md` > Claude Plan > Scaffold profile. Do not ask; pass through to planner.
 
-Note: Hosting environment is already captured in `environment.md` during first-time setup. Read it but do not re-ask.
+Note: Hosting environment and scaffold profile are already captured in `environment.md` during first-time setup. Read them but do not re-ask.
 
 ## Rules
 
@@ -36,6 +37,9 @@ integrations:
   - <integration-1>
   - <integration-2>
 environment: <read from environment.md>
+context:
+  scaffold_profile: <read from environment.md>
+  context_window: <read from environment.md>
 notes: <any additional context from the user>
 ```
 

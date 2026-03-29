@@ -47,6 +47,28 @@ Genesis asks:
 
 Genesis reads your `environment.md` (platform, shell, package manager) and `personalisation.md` (locale, output style, role) before the interview. It never re-asks information captured during first-time setup.
 
+## Context-Aware Scaffolding
+
+Genesis adjusts the size and complexity of the generated scaffold based on the user's Claude plan tier. This prevents the scaffold infrastructure from consuming too much of the available context window.
+
+### Scaffold Profiles
+
+| Profile | Plan Tier | Context Window | Domain Agents | Dynamic Skills | CLAUDE.md Style |
+|---------|-----------|----------------|---------------|----------------|-----------------|
+| **lean** | Pro | 200k | 1-2 | 1-2 | Condensed |
+| **standard** | Max | 200k | 2-3 | 2-3 | Standard |
+| **full** | ProMax / API | 1M | 3-4 | 3-4 | Detailed |
+
+The scaffold profile is set during first-time setup and stored in `environment.md`. It can be overridden at any time by editing the file or by requesting a different profile during the plan phase.
+
+### What Changes by Profile
+
+- **lean:** Uses a condensed CLAUDE.md template (merged sections, no structure tree), consolidates memory into a single file, selects only the most critical domain agent for the project type
+- **standard:** Uses the full CLAUDE.md template, full memory files, moderate agent/skill selection
+- **full:** Uses the detailed CLAUDE.md template with extended context, full memory files, comprehensive agent/skill selection
+
+Every generated project includes a statusline that shows context usage percentage, so users can monitor their budget in real time.
+
 ## Phase 2: Plan
 
 Once Genesis has all four pieces of information, it consults the stack profiles and agent catalogue, then presents a structured plan:

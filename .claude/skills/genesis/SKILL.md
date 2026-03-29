@@ -12,7 +12,7 @@ You are executing the Genesis bootstrap workflow. Follow these phases strictly.
 
 Read the user's request carefully. Extract everything you can before asking questions.
 
-**Before interviewing:** Read `personalisation.md` and `environment.md` from the Genesis root. These provide user preferences and platform details. If either file is missing, trigger first-time setup (see CLAUDE.md) before proceeding.
+**Before interviewing:** Read `personalisation.md` and `environment.md` from the Genesis root. These provide user preferences and platform details. If either file is missing, trigger first-time setup (see CLAUDE.md) before proceeding. If `environment.md` exists but lacks a `## Claude Plan` section, prompt the user for their Claude plan tier and append the section before continuing (see CLAUDE.md migration check).
 
 **Required information:**
 1. Project name (kebab-case)
@@ -29,6 +29,8 @@ Hosting environment is already captured in `environment.md`. Do not re-ask.
 - Use AskUserQuestion for a clean interview experience
 
 ## Phase 2: Plan
+
+Read the scaffold profile from `environment.md` > Claude Plan. Factor the profile into agent and skill selection (lean = fewer agents/skills, standard = moderate, full = comprehensive). Consult agent-catalogue.md profile tags.
 
 Once you have all information, produce this plan and present it:
 
@@ -57,9 +59,14 @@ Skills (dynamic):
 MCP Servers:
 - <server-name> (or "None" if no integrations)
 
+Context Profile: <lean | standard | full> (<context_window> tokens)
+Estimated infrastructure: ~<N>k tokens (<P>% of context)
+
 Folder Structure:
 <tree of top-level directories>
 ```
+
+For lean profiles, add a note: "Scaffold sized for Pro plan (200k context). Use /compact if you notice slowdowns in long sessions."
 
 Wait for user confirmation. If they request changes, adjust and re-present.
 
@@ -86,7 +93,7 @@ mkdir -p ~/claude/<name>/<stack-specific-dirs>
 ```
 
 ### 3.2 CLAUDE.md
-Use `templates/CLAUDE.md.tmpl` as the skeleton. Fill all placeholders with project-specific content. Ensure every section from the Global Rules in Genesis's CLAUDE.md is present. This is the most important file -- it governs the entire project.
+Read the scaffold profile from `environment.md`. If **lean**, use `templates/CLAUDE.md.lean.tmpl`. Otherwise, use `templates/CLAUDE.md.tmpl`. Fill all placeholders with project-specific content. Ensure every section from the Global Rules in Genesis's CLAUDE.md is present (the lean template merges these into a compact format). This is the most important file -- it governs the entire project.
 
 ### 3.3 .claude/settings.json
 Use `templates/settings.json.tmpl` as skeleton. Configure:
@@ -115,7 +122,9 @@ Use `templates/mcp.json.tmpl` as skeleton. Only include servers for integrations
 ### 3.7 Memory files
 Create the memory directory at `~/.claude/projects/-home-xeeva-claude-<name>/memory/`
 
-Write three files:
+If the scaffold profile is **lean**, write a single consolidated `MEMORY.md` that includes user profile and project context inline (no separate files). This reduces the number of files loaded at session start.
+
+Otherwise, write three files:
 - `user-profile.md` from `templates/memory-user.md.tmpl` (copy verbatim)
 - `project-context.md` from `templates/memory-project.md.tmpl` (fill placeholders)
 - `MEMORY.md` index file pointing to both
@@ -146,11 +155,14 @@ Stack: <stack>
 Agents: <count> (<names>)
 Skills: <count> (<names>)
 MCP: <servers or "none">
+Context profile: <lean | standard | full> (~<N>k tokens, <P>% of <context_window>)
 
 Next steps:
   cd ~/claude/<name>/
   claude
 ```
+
+For lean profiles, append: "Tip: Your Pro plan has 200k context. This scaffold uses ~<N>k tokens. Use /compact if you notice slowdowns in long sessions."
 
 ## Important Notes
 

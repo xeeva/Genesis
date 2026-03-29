@@ -185,6 +185,15 @@ Language/locale and output style rules are read from `personalisation.md`, not h
 
 Changes to global rules affect all future generated projects. Existing projects are not affected; they have their own copy of the rules in their `CLAUDE.md`.
 
+## Overriding the Scaffold Profile
+
+The scaffold profile (lean, standard, full) is normally derived from your Claude plan tier during first-time setup. You can override it in two ways:
+
+1. **Permanently:** Edit `environment.md` and change the `Scaffold profile` value under `## Claude Plan`
+2. **Per-project:** During the plan phase, tell Genesis you want a different profile (e.g. "keep it lean" or "give me the full scaffold")
+
+This is useful for API key users who have varying context budgets, or for any user who prefers a lighter or heavier scaffold regardless of their plan tier.
+
 ## Contributing Back Upstream
 
 If you have added a useful stack profile, agent, template, or skill, consider contributing it back to Genesis.

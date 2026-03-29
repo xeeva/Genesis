@@ -34,6 +34,12 @@ Before anything else, check whether `personalisation.md` and `environment.md` ex
    - Ask: "What platform are you running on?" (Linux, macOS, Windows, WSL)
    - Ask: "What shell do you use?" (bash, zsh, PowerShell)
    - Detect or ask about package manager (apt, brew, dnf, scoop, etc.)
+   - Ask: "What Claude plan are you on?" (Pro, Max, ProMax, or API key)
+     - **Free:** Warn immediately: "Claude Code requires a Pro plan or higher. Genesis scaffolds may not work within free-tier limits."
+     - **Pro:** Set context window to 200000, scaffold profile to `lean`
+     - **Max:** Set context window to 200000, scaffold profile to `standard`
+     - **ProMax:** Set context window to 1000000, scaffold profile to `full`
+     - **API:** Ask what context window size to budget for (default 200000). Set scaffold profile to `standard` unless they specify a preference.
    - Write `environment.md` with their answers (use `environment.md.example` as the template)
 
 2. **Personalisation** (if `personalisation.md` is missing):
@@ -53,6 +59,8 @@ Before anything else, check whether `personalisation.md` and `environment.md` ex
 4. Confirm setup is complete and display: "Setup complete. You can re-run setup at any time by deleting `personalisation.md` or `environment.md` and starting a new session."
 
 **If both files exist**, skip setup and proceed normally. Read both files to load the user's preferences and environment.
+
+**Migration check:** If `environment.md` exists but does not contain a `## Claude Plan` section, prompt the user for their Claude plan tier (Pro, Max, ProMax, or API) and append the section. This is a one-time migration for users who set up Genesis before context-aware scaffolding was added.
 
 ## User Configuration Files
 
@@ -109,10 +117,33 @@ Create the target directory and write all files:
 5. Write `.claude/skills/*/SKILL.md` for each skill (base set + dynamic)
 6. Write `.mcp.json` if integrations are needed
 7. Write memory files (user profile, project context, MEMORY.md index) to `~/.claude/projects/-home-xeeva-claude-<project-name>/memory/`
-8. Write application boilerplate (entry points, config, test setup, docs/)
+8. Write application scaffold (see Scaffold Boundary below)
 9. Write `.gitignore` appropriate to the stack
 
 Use the templates in `.claude/skills/genesis/templates/` as starting points. Use the references in `.claude/skills/genesis/references/` for stack-specific knowledge and agent selection.
+
+#### Scaffold Boundary
+
+Genesis is a **scaffolding tool, not a code generator**. The application files it creates must set up the project structure and tooling so the user can begin building immediately in the destination project -- but Genesis must never write the actual implementation.
+
+**Generate (scaffold layer):**
+- Directory structure with empty `__init__.py` files (Python) or equivalent module markers
+- Package manifest (`pyproject.toml`, `package.json`, `Cargo.toml`, `go.mod`, etc.) with dependencies listed
+- Configuration files (`.env.example`, framework configs, linter/formatter configs)
+- A minimal entry point with just enough to prove the stack runs (e.g. a "hello world" route, an empty `main()`, a CLI stub that prints the project name)
+- Test setup: `conftest.py` / test config with a single placeholder test that passes
+- `docs/README.md` and `docs/architecture.md` describing the intended design
+- Docker/compose files if relevant to the stack
+
+**Never generate (implementation layer):**
+- Business logic, domain models, or service classes with real functionality
+- API endpoints beyond a single health-check or hello-world route
+- Database schemas, migrations, or ORM models with real fields
+- Integration code (API clients, message queue consumers, auth flows)
+- Tests that test real behaviour -- only generate a single passing placeholder test
+- Anything the user would write in the destination project's first working session
+
+The litmus test: if a file contains logic that solves the user's stated problem, it belongs in the destination project, not in the scaffold. Genesis sets the stage; the user (with Claude Code in the destination project) writes the show.
 
 ### Phase 4: Finalise
 
@@ -176,7 +207,7 @@ Always include these **workflow agents** in every project:
 - `code-reviewer.md` -- reviews code for quality, style, and correctness
 - `doc-writer.md` -- generates and updates documentation
 
-Select **domain agents** based on the project type. Consult `.claude/skills/genesis/references/agent-catalogue.md` for the full catalogue.
+Select **domain agents** based on the project type and scaffold profile. The scaffold profile (lean, standard, full) determines the maximum number of domain agents: lean = 1-2, standard = 2-3, full = 3-4. Consult `.claude/skills/genesis/references/agent-catalogue.md` for the full catalogue and per-agent profile tags.
 
 ## Skill Selection Guidelines
 
@@ -186,7 +217,7 @@ Always include these **base skills** in every project:
 - `/review` -- trigger a code review
 - `/commit` -- stage and commit with a well-formed message
 
-Select **dynamic skills** based on the project domain. Examples:
+Select **dynamic skills** based on the project domain and scaffold profile. The scaffold profile limits dynamic skills: lean = 1-2, standard = 2-3, full = 3-4. Examples:
 - API projects: `/endpoint`, `/migrate`
 - Frontend projects: `/component`, `/storybook`
 - CLI projects: `/run`, `/build`

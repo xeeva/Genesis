@@ -4,6 +4,29 @@ Reference document for selecting which agents to generate in a new project. The 
 
 ---
 
+## Context Budget Guidelines
+
+Generated agent files consume context tokens every time they are loaded. The scaffold profile (from `environment.md`) determines how many agents to include.
+
+| Scaffold Profile | Workflow Agents | Domain Agents | Total Agent Budget |
+|-----------------|----------------|---------------|-------------------|
+| **lean** (Pro, 200k) | 3 (always) | 1-2 | ~3-5k tokens |
+| **standard** (Max, 200k) | 3 (always) | 2-3 | ~4-7k tokens |
+| **full** (ProMax/API, 1M) | 3 (always) | 3-4 | ~5-10k tokens |
+
+Estimated cost per agent file: ~600-800 tokens (workflow), ~800-1200 tokens (domain).
+
+**Lean profile prioritisation:** When limited to 1-2 domain agents, pick the single most impactful agent for the project type:
+- API project: api-designer
+- Database project: data-modeller
+- Frontend project: component-architect
+- CLI project: cli-designer
+- Data/ML project: pipeline-architect
+- Library project: api-surface-reviewer
+- Security-sensitive: add security-reviewer only if the project explicitly handles auth or sensitive user data
+
+---
+
 ## Workflow Agents (always included)
 
 These agents are included in every generated project regardless of domain.
@@ -37,18 +60,21 @@ These agents are included in every generated project regardless of domain.
 - **Model:** sonnet
 - **Tools:** Read, Write, Edit, Grep, Glob
 - **Best for:** API-first projects, microservices, backend services
+- **Profiles:** lean, standard, full
 
 **auth-specialist**
 - **Purpose:** Implement and review authentication and authorisation patterns
 - **Model:** opus
 - **Tools:** Read, Write, Edit, Grep, Glob, Bash
 - **Best for:** Projects with user authentication, OAuth, JWT, RBAC
+- **Profiles:** standard, full
 
 **performance-analyst**
 - **Purpose:** Identify bottlenecks, suggest optimisations, review query performance
 - **Model:** sonnet
 - **Tools:** Read, Grep, Glob, Bash
 - **Best for:** High-traffic services, data-heavy applications
+- **Profiles:** full
 
 ### Database Projects
 
@@ -57,12 +83,14 @@ These agents are included in every generated project regardless of domain.
 - **Model:** sonnet
 - **Tools:** Read, Write, Edit, Grep, Glob
 - **Best for:** Projects with relational databases, complex data models
+- **Profiles:** lean, standard, full
 
 **migration-writer**
 - **Purpose:** Write database migration files, validate migration safety, plan rollbacks
 - **Model:** sonnet
 - **Tools:** Read, Write, Edit, Bash
 - **Best for:** Projects using migration frameworks (Alembic, Flyway, Goose, Prisma)
+- **Profiles:** standard, full
 
 ### Frontend Projects
 
@@ -71,18 +99,21 @@ These agents are included in every generated project regardless of domain.
 - **Model:** sonnet
 - **Tools:** Read, Write, Edit, Grep, Glob
 - **Best for:** React, Vue, Svelte, Angular applications
+- **Profiles:** lean, standard, full
 
 **accessibility-reviewer**
 - **Purpose:** Review UI for WCAG compliance, keyboard navigation, screen reader support
 - **Model:** sonnet
 - **Tools:** Read, Grep, Glob
 - **Best for:** User-facing web applications
+- **Profiles:** standard, full
 
 **ui-reviewer**
 - **Purpose:** Review component design, responsiveness, consistency, and UX patterns
 - **Model:** sonnet
 - **Tools:** Read, Grep, Glob
 - **Best for:** Frontend applications with design systems
+- **Profiles:** full
 
 ### Data and ML Projects
 
@@ -91,12 +122,14 @@ These agents are included in every generated project regardless of domain.
 - **Model:** sonnet
 - **Tools:** Read, Write, Edit, Grep, Glob, Bash
 - **Best for:** Data engineering, ETL, streaming projects
+- **Profiles:** lean, standard, full
 
 **model-evaluator**
 - **Purpose:** Evaluate ML model performance, suggest improvements, review training pipelines
 - **Model:** opus
 - **Tools:** Read, Grep, Glob, Bash
 - **Best for:** Machine learning projects
+- **Profiles:** standard, full
 
 ### Infrastructure Projects
 
@@ -105,12 +138,14 @@ These agents are included in every generated project regardless of domain.
 - **Model:** sonnet
 - **Tools:** Read, Grep, Glob
 - **Best for:** DevOps, platform engineering, cloud-native projects
+- **Profiles:** standard, full
 
 **security-reviewer**
 - **Purpose:** Audit code for security vulnerabilities, review dependencies, check configurations
 - **Model:** opus
 - **Tools:** Read, Grep, Glob, Bash
 - **Best for:** Security-sensitive projects, anything handling user data or auth
+- **Profiles:** lean (only if auth/sensitive data), standard, full
 
 ### CLI and Tool Projects
 
@@ -119,6 +154,7 @@ These agents are included in every generated project regardless of domain.
 - **Model:** sonnet
 - **Tools:** Read, Write, Edit, Grep, Glob
 - **Best for:** Command-line tools, developer tooling
+- **Profiles:** lean, standard, full
 
 ### Library and Package Projects
 
@@ -127,6 +163,7 @@ These agents are included in every generated project regardless of domain.
 - **Model:** sonnet
 - **Tools:** Read, Grep, Glob
 - **Best for:** Libraries, SDKs, packages published for external use
+- **Profiles:** lean, standard, full
 
 ---
 
@@ -140,3 +177,4 @@ These agents are included in every generated project regardless of domain.
 6. **Limit domain agents to 3-4** per project to avoid overwhelming the user
 7. **Prefer sonnet** for most agents; reserve opus for security and complex architectural review
 8. **Every agent should have a clear, non-overlapping purpose** with other agents in the same project
+9. **Respect the scaffold profile.** Lean profiles get 1-2 domain agents (the most critical). Standard profiles get 2-3. Full profiles get 3-4. Workflow agents are always included regardless of profile. Check each agent's **Profiles** tag before selecting it.

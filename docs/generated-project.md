@@ -80,6 +80,8 @@ The most important file in any generated project. It serves as the project's bra
 
 This file is consulted by Claude at the start of every session and governs all code generation, reviews, and suggestions.
 
+For lean scaffold profiles (Pro plan), Genesis uses a condensed CLAUDE.md template that merges multiple sections to reduce token consumption by approximately 50%.
+
 ## .claude/settings.json
 
 Configures Claude Code's permissions and automated hooks for the project.
@@ -104,6 +106,8 @@ Configures Claude Code's permissions and automated hooks for the project.
 
 - **PostToolUse hook**: runs `ruff check --fix` and `ruff format` automatically after Claude edits `.py` files
 - **Stop hook**: reminds Claude to run tests and commit before ending a session
+
+Every generated project includes a statusline configuration that displays the current model and context usage percentage. This appears at the bottom of the Claude Code interface.
 
 Permissions and hooks are tailored to the stack using the stack profiles reference.
 
