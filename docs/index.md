@@ -45,6 +45,8 @@ Genesis asks 1-2 follow-up questions, presents a plan, then generates everything
 
 Genesis follows a four-phase workflow:
 
+![Genesis Workflow](images/genesis-workflow.svg)
+
 1. **Interview**: extracts project details from your description, asks only what is missing (2-4 questions max)
 2. **Plan**: presents a structured generation plan with agents, skills, MCP servers, and folder layout for your approval
 3. **Generate**: creates the entire project directory with all infrastructure and boilerplate

@@ -11,6 +11,8 @@ title: Generated Project Anatomy
 
 This document describes every file and directory that Genesis creates when it scaffolds a new project.
 
+![Generated Project Structure](images/generated-project-arch.svg)
+
 ## Directory Structure
 
 A typical generated project looks like this (using a Python FastAPI example):

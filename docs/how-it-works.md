@@ -11,6 +11,8 @@ title: How It Works
 
 Genesis follows a strict four-phase workflow. Each phase completes before the next begins, and you have the opportunity to review and adjust at key decision points.
 
+![Genesis Workflow](images/genesis-workflow.svg)
+
 ## Phase 1: Interview
 
 Genesis reads your opening message and extracts as much information as it can. It gathers four things:
