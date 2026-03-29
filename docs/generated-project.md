@@ -5,7 +5,7 @@ title: Generated Project Anatomy
 
 # Generated Project Anatomy
 
-**Navigation:** [Home](.) | [Getting Started](getting-started) | [How It Works](how-it-works) | [Architecture](architecture) | [Plans and Context](plans-and-context) | [Customisation](customisation) | [Updating](updating) | [FAQ](faq)
+[Home](.) | [Start](getting-started) | [How It Works](how-it-works) | [Architecture](architecture) | [Plans](plans-and-context) | [Customise](customisation) | [Update](updating) | [FAQ](faq)
 
 ---
 

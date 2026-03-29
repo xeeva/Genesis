@@ -5,7 +5,7 @@ title: How It Works
 
 # How It Works
 
-**Navigation:** [Home](.) | [Getting Started](getting-started) | [Architecture](architecture) | [Generated Projects](generated-project) | [Plans and Context](plans-and-context) | [Customisation](customisation) | [Updating](updating) | [FAQ](faq)
+[Home](.) | [Start](getting-started) | [Architecture](architecture) | [Projects](generated-project) | [Plans](plans-and-context) | [Customise](customisation) | [Update](updating) | [FAQ](faq)
 
 ---
 

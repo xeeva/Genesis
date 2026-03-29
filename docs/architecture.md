@@ -5,7 +5,7 @@ title: Architecture
 
 # Architecture
 
-**Navigation:** [Home](.) | [Getting Started](getting-started) | [How It Works](how-it-works) | [Generated Projects](generated-project) | [Plans and Context](plans-and-context) | [Customisation](customisation) | [Updating](updating) | [FAQ](faq)
+[Home](.) | [Start](getting-started) | [How It Works](how-it-works) | [Projects](generated-project) | [Plans](plans-and-context) | [Customise](customisation) | [Update](updating) | [FAQ](faq)
 
 ---
 

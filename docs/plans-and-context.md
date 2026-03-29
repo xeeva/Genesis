@@ -5,7 +5,7 @@ title: Claude Plans and Context
 
 # Claude Plans and Context
 
-**Navigation:** [Home](.) | [Getting Started](getting-started) | [How It Works](how-it-works) | [Architecture](architecture) | [Generated Projects](generated-project) | [Plans and Context](plans-and-context) | [Customisation](customisation) | [Updating](updating) | [FAQ](faq)
+[Home](.) | [Start](getting-started) | [How It Works](how-it-works) | [Architecture](architecture) | [Projects](generated-project) | [Customise](customisation) | [Update](updating) | [FAQ](faq)
 
 ---
 
