@@ -111,15 +111,59 @@ Templates live in `.claude/skills/genesis/templates/` and use `{{PLACEHOLDER}}` 
 
 ### Existing Placeholders
 
+**CLAUDE.md templates:**
+
 | Placeholder | Description |
-|-------------|-------------|
-| `{{PROJECT_NAME}}` | The project name in kebab-case |
-| `{{STACK}}` | The primary language/framework |
-| `{{PURPOSE}}` | One-sentence project description |
-| `{{PERMISSIONS}}` | Stack-appropriate Bash permissions |
-| `{{HOOKS}}` | Formatter and linter hook configuration |
-| `{{AGENTS}}` | List of agents for the project |
-| `{{SKILLS}}` | List of skills for the project |
+|:--|:--|
+| `{{PROJECT_NAME}}` | Project name in kebab-case |
+| `{{PROJECT_DESCRIPTION}}` | One-sentence project description |
+| `{{STACK_DESCRIPTION}}` | Language, framework, and key dependencies |
+| `{{FOLDER_STRUCTURE}}` | Indented directory tree |
+| `{{STACK_ERROR_PATTERNS}}` | Stack-specific error handling patterns |
+| `{{STACK_CODE_STANDARDS}}` | Stack-specific code standards |
+| `{{STACK_TEST_CONFIG}}` | Test framework configuration |
+| `{{COMMIT_STYLE}}` | Conventional Commits or plain imperative |
+| `{{AGENT_LIST}}` | List of available agents |
+| `{{SKILL_LIST}}` | List of available skills |
+| `{{KEY_COMMANDS}}` | Common commands for the stack |
+| `{{ADDITIONAL_RULES}}` | Extra project-specific rules |
+| `{{AGENT_SKILL_TABLE}}` | Combined agent/skill table (lean template only) |
+| `{{CONTEXT_WINDOW}}` | Context window size (lean template only) |
+
+**settings.json template:**
+
+| Placeholder | Description |
+|:--|:--|
+| `{{PERMISSION_ENTRIES}}` | Stack-appropriate Bash permission entries |
+| `{{FORMAT_HOOK}}` | Formatter and linter hook commands |
+| `{{PRETOOLUSE_HOOKS}}` | Risk evaluation hook (when risk-evaluator included) |
+
+**Agent and skill templates:**
+
+| Placeholder | Description |
+|:--|:--|
+| `{{AGENT_NAME}}` | Agent name in kebab-case |
+| `{{AGENT_DESCRIPTION}}` | One-line agent purpose |
+| `{{AGENT_ROLE}}` | Detailed role description |
+| `{{AGENT_GUIDELINES}}` | Specific instructions and rules |
+| `{{AGENT_TOOLS}}` | Comma-separated tool list |
+| `{{AGENT_OUTPUT_FORMAT}}` | Expected output structure |
+| `{{SKILL_NAME}}` | Skill name |
+| `{{SKILL_DESCRIPTION}}` | When to invoke the skill |
+| `{{SKILL_OPTIONS}}` | YAML frontmatter options |
+| `{{SKILL_BODY}}` | Skill instructions |
+
+**Memory and MCP templates:**
+
+| Placeholder | Description |
+|:--|:--|
+| `{{STACK_SUMMARY}}` | Brief stack description |
+| `{{CREATION_DATE}}` | Project creation date |
+| `{{PROJECT_MOTIVATION}}` | Why the project exists |
+| `{{INTEGRATIONS}}` | Key integrations list |
+| `{{AGENT_NAMES}}` | Available agent names |
+| `{{SKILL_NAMES}}` | Available skill names |
+| `{{MCP_SERVER_ENTRIES}}` | MCP server configuration blocks |
 
 ## Adding New Skills
 

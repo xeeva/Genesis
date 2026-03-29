@@ -41,7 +41,7 @@ body {
    ============================================ */
 
 .page-header {
-  background-image: linear-gradient(135deg, #6e40c9 0%, #1f6feb 50%, #238636 100%) !important;
+  background-image: linear-gradient(135deg, #f0883e 0%, #e05d20 40%, #d94a1a 70%, #c03e14 100%) !important;
   padding: 1.5rem 1rem !important;
 }
 
@@ -231,10 +231,11 @@ body {
 .main-content pre {
   background-color: var(--g-bg-secondary) !important;
   border: 1px solid var(--g-border) !important;
-  border-radius: 6px !important;
+  border-radius: 0 !important;
   padding: 1rem !important;
   overflow-x: auto !important;
   box-shadow: none !important;
+  outline: none !important;
 }
 
 .main-content pre code {
@@ -255,9 +256,13 @@ body {
   border: 1px solid var(--g-border) !important;
   border-radius: 0 !important;
   border-collapse: collapse !important;
+  border-spacing: 0 !important;
   width: 100% !important;
   margin: 1rem 0 !important;
   display: table !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
 .main-content table th {
@@ -279,6 +284,19 @@ body {
 
 .main-content table tr:hover td {
   background-color: rgba(88, 166, 255, 0.04) !important;
+}
+
+/* Kill all inherited table radius and backgrounds */
+.main-content table th:first-child,
+.main-content table th:last-child,
+.main-content table td:first-child,
+.main-content table td:last-child,
+.main-content table tr:first-child th,
+.main-content table tr:first-child td,
+.main-content table tr:last-child th,
+.main-content table tr:last-child td {
+  border-radius: 0 !important;
+  background-clip: padding-box !important;
 }
 
 /* Inline code inside tables */

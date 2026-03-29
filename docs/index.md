@@ -3,19 +3,27 @@ layout: default
 title: Genesis
 ---
 
-## What is Genesis?
+## The Problem
 
-Genesis is a Claude Code project that creates other Claude Code projects. You describe what you want to build, and Genesis scaffolds a fully-equipped development environment -- agents, skills, hooks, memory, MCP server configs, and application boilerplate -- all tailored to your chosen stack.
+Claude Code is powerful, but getting the most out of it requires significant upfront configuration. A well-equipped project needs:
 
-Every generated project is ready for productive work from the very first Claude session. No manual configuration, no copy-pasting boilerplate, no guesswork about which agents or skills to set up.
+- A **CLAUDE.md** with coding standards, stack conventions, testing rules, and error handling patterns
+- **Agents** tailored to your domain: API designers, data modellers, security reviewers, each with role-specific instructions
+- **Skills** for common workflows: running tests, linting, code review, committing
+- **Hooks** that auto-format code after edits and remind you to test before stopping
+- **Permissions** scoped to your stack's specific tools
+- **MCP server configs** for your databases, APIs, and external services
+- **Memory files** seeding Claude with your profile, preferences, and project context
+
+Most developers skip this setup entirely, or cobble together a minimal CLAUDE.md and miss the rest. The result: Claude works, but not nearly as well as it could. You lose the specialised agents, the automated workflows, the domain-specific skills, and the contextual memory that make Claude Code truly productive.
+
+## The Solution
+
+Genesis is a Claude Code project that creates other Claude Code projects. You describe what you want to build, and Genesis scaffolds everything listed above in under two minutes, tailored to your stack and your Claude plan tier.
+
+Every generated project is ready for productive work from the very first session. No manual configuration. No copy-pasting boilerplate. No guesswork about which agents or skills to set up.
 
 Genesis itself is a Claude Code project. It uses the same agents, skills, and memory system it generates for others, making it both a tool and a reference implementation.
-
-## Why Genesis?
-
-Setting up a Claude Code project properly takes effort. You need to write a CLAUDE.md with project rules, configure permissions and hooks in settings.json, create agents tailored to your domain, set up skills for common workflows, configure MCP servers for your integrations, and seed memory with project context.
-
-Instead of spending an hour configuring your environment, you spend two minutes describing your project and reviewing a plan. Genesis does the rest.
 
 ## Quick Start
 
