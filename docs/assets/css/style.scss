@@ -227,6 +227,14 @@ body {
   border: 1px solid var(--g-border) !important;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
   margin: 1.5rem 0 !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* SVG diagrams -- ensure dark mode rendering */
+.main-content img[src$=".svg"] {
+  background-color: transparent !important;
+  color-scheme: dark !important;
 }
 
 /* Footer */

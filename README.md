@@ -1,10 +1,5 @@
 <div align="center">
 
-<!-- Hero Banner -->
-<img src="docs/images/genesis-workflow.svg" alt="Genesis Workflow" width="100%" />
-
-<br/>
-
 # ⚡ G E N E S I S
 
 ### The Claude that builds Claudes
@@ -17,6 +12,7 @@
 [![License: MIT](https://img.shields.io/badge/Licence-MIT-F7DF1E?style=for-the-badge&logo=opensourceinitiative&logoColor=black)](LICENSE)
 [![Docs](https://img.shields.io/badge/Docs-GitHub%20Pages-A371F7?style=for-the-badge&logo=readthedocs&logoColor=white)](https://xeeva.github.io/Genesis)
 [![Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-FF6B35?style=for-the-badge&logo=anthropic&logoColor=white)](https://docs.anthropic.com/en/docs/claude-code)
+[![Sponsor](https://img.shields.io/badge/Sponsor-EA4AAA?style=for-the-badge&logo=githubsponsors&logoColor=white)](https://github.com/sponsors/xeeva)
 
 <br/>
 
@@ -111,6 +107,12 @@ Initialise git, update registry, provide next steps.
 </td>
 </tr>
 </table>
+
+<div align="center">
+
+<img src="docs/images/genesis-workflow.svg" alt="Genesis Workflow" width="100%" />
+
+</div>
 
 See the [detailed walkthrough](https://xeeva.github.io/Genesis/how-it-works) for examples.
 
