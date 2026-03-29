@@ -1,0 +1,270 @@
+---
+---
+
+@import "jekyll-theme-cayman";
+
+/* ============================================
+   GENESIS DARK THEME
+   Vivid colours on deep dark backgrounds
+   ============================================ */
+
+:root {
+  --g-bg-primary: #0d1117;
+  --g-bg-secondary: #161b22;
+  --g-bg-tertiary: #1c2128;
+  --g-border: #30363d;
+  --g-text-primary: #e6edf3;
+  --g-text-secondary: #8b949e;
+  --g-text-muted: #6e7681;
+  --g-accent-blue: #58a6ff;
+  --g-accent-purple: #bc8cff;
+  --g-accent-green: #3fb950;
+  --g-accent-orange: #f0883e;
+  --g-accent-red: #ff7b72;
+  --g-accent-cyan: #39d2c0;
+  --g-accent-pink: #f778ba;
+  --g-gradient-start: #6e40c9;
+  --g-gradient-mid: #238636;
+  --g-gradient-end: #1f6feb;
+  --g-code-bg: #1c2128;
+}
+
+/* Page background */
+body {
+  background-color: var(--g-bg-primary) !important;
+  color: var(--g-text-primary) !important;
+}
+
+/* Header / hero banner */
+.page-header {
+  background-image: linear-gradient(135deg, #6e40c9 0%, #1f6feb 50%, #238636 100%) !important;
+  padding: 2rem 1rem !important;
+}
+
+.page-header h1.project-name {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+  font-size: 2.5rem !important;
+  letter-spacing: 0.05em !important;
+}
+
+.page-header h2.project-tagline {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 400 !important;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2) !important;
+}
+
+.page-header .btn {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  transition: all 0.2s ease !important;
+}
+
+.page-header .btn:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border-color: #ffffff !important;
+}
+
+/* Main content area */
+.main-content {
+  background-color: var(--g-bg-primary) !important;
+  color: var(--g-text-primary) !important;
+}
+
+/* Headings */
+.main-content h1,
+.main-content h2,
+.main-content h3,
+.main-content h4,
+.main-content h5,
+.main-content h6 {
+  color: var(--g-text-primary) !important;
+}
+
+.main-content h1 {
+  color: var(--g-accent-purple) !important;
+  border-bottom: 2px solid var(--g-border) !important;
+}
+
+.main-content h2 {
+  color: var(--g-accent-blue) !important;
+  border-bottom: 1px solid var(--g-border) !important;
+  padding-bottom: 0.3em !important;
+}
+
+.main-content h3 {
+  color: var(--g-accent-cyan) !important;
+}
+
+/* Paragraphs and text */
+.main-content p,
+.main-content li {
+  color: var(--g-text-primary) !important;
+}
+
+/* Links */
+.main-content a {
+  color: var(--g-accent-blue) !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+}
+
+.main-content a:hover {
+  color: var(--g-accent-purple) !important;
+  text-decoration: underline !important;
+}
+
+/* Navigation bar styling */
+.main-content > p:first-child a,
+.main-content > p:first-of-type a {
+  color: var(--g-accent-cyan) !important;
+  font-weight: 500 !important;
+}
+
+.main-content > p:first-child a:hover,
+.main-content > p:first-of-type a:hover {
+  color: var(--g-accent-pink) !important;
+}
+
+/* Code blocks */
+.main-content code {
+  background-color: var(--g-code-bg) !important;
+  color: var(--g-accent-orange) !important;
+  border: 1px solid var(--g-border) !important;
+  border-radius: 6px !important;
+  padding: 0.15em 0.4em !important;
+}
+
+.main-content pre {
+  background-color: var(--g-bg-secondary) !important;
+  border: 1px solid var(--g-border) !important;
+  border-radius: 8px !important;
+  padding: 1rem !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.main-content pre code {
+  color: var(--g-text-primary) !important;
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+/* Blockquotes */
+.main-content blockquote {
+  border-left: 4px solid var(--g-accent-purple) !important;
+  background-color: var(--g-bg-secondary) !important;
+  color: var(--g-text-secondary) !important;
+  padding: 0.8rem 1.2rem !important;
+  border-radius: 0 8px 8px 0 !important;
+}
+
+.main-content blockquote p {
+  color: var(--g-text-secondary) !important;
+}
+
+/* Tables */
+.main-content table {
+  background-color: var(--g-bg-secondary) !important;
+  border: 1px solid var(--g-border) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
+.main-content table th {
+  background-color: var(--g-bg-tertiary) !important;
+  color: var(--g-accent-cyan) !important;
+  border-bottom: 2px solid var(--g-accent-blue) !important;
+  font-weight: 600 !important;
+  padding: 0.75rem 1rem !important;
+}
+
+.main-content table td {
+  color: var(--g-text-primary) !important;
+  border-bottom: 1px solid var(--g-border) !important;
+  padding: 0.6rem 1rem !important;
+}
+
+.main-content table tr:last-child td {
+  border-bottom: none !important;
+}
+
+.main-content table tr:hover td {
+  background-color: rgba(88, 166, 255, 0.05) !important;
+}
+
+/* Horizontal rules */
+.main-content hr {
+  border: none !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, var(--g-accent-purple), var(--g-accent-blue), var(--g-accent-green), transparent) !important;
+  margin: 2rem 0 !important;
+}
+
+/* Strong / bold */
+.main-content strong {
+  color: var(--g-text-primary) !important;
+  font-weight: 600 !important;
+}
+
+/* Lists */
+.main-content ul,
+.main-content ol {
+  color: var(--g-text-primary) !important;
+}
+
+.main-content li::marker {
+  color: var(--g-accent-blue) !important;
+}
+
+/* Images and diagrams */
+.main-content img {
+  border-radius: 8px !important;
+  border: 1px solid var(--g-border) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+  margin: 1.5rem 0 !important;
+}
+
+/* Footer */
+.site-footer {
+  background-color: var(--g-bg-primary) !important;
+  border-top: 1px solid var(--g-border) !important;
+  color: var(--g-text-muted) !important;
+}
+
+.site-footer a {
+  color: var(--g-accent-blue) !important;
+}
+
+.site-footer-credits {
+  color: var(--g-text-muted) !important;
+}
+
+/* Selection colour */
+::selection {
+  background-color: rgba(110, 64, 201, 0.4) !important;
+  color: #ffffff !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--g-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--g-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--g-text-muted);
+}
