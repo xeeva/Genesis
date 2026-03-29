@@ -41,7 +41,7 @@ body {
    ============================================ */
 
 .page-header {
-  background-image: linear-gradient(135deg, #f0883e 0%, #e05d20 40%, #d94a1a 70%, #c03e14 100%) !important;
+  background-image: linear-gradient(135deg, #6e40c9 0%, #9b4dca 30%, #d94a1a 70%, #f0883e 100%) !important;
   padding: 1.5rem 1rem !important;
 }
 
@@ -91,16 +91,18 @@ body {
 .docs-sidebar {
   width: var(--g-sidebar-width);
   min-width: var(--g-sidebar-width);
-  border-right: 1px solid var(--g-border);
-  background-color: var(--g-bg-primary);
+  flex-shrink: 0;
 }
 
 .sidebar-inner {
-  position: sticky;
+  position: fixed;
   top: 0;
+  width: var(--g-sidebar-width);
+  height: 100vh;
   padding: 1.5rem 0 2rem 1rem;
-  max-height: 100vh;
   overflow-y: auto;
+  border-right: 1px solid var(--g-border);
+  background-color: var(--g-bg-primary);
 }
 
 .sidebar-section {
