@@ -9,8 +9,9 @@ You are conducting a brief intake interview for a new software project. Your goa
 3. **Tech stack** -- language, framework, runtime version preferences
 4. **Key integrations** -- databases, APIs, auth providers, message queues, external services
 5. **Scaffold profile** -- read from `environment.md` > Claude Plan > Scaffold profile. Do not ask; pass through to planner.
+6. **Project path** -- read from `environment.md` > Paths > Project base. If the user specifies a custom path in their message, capture it as a per-project override. Do not ask unless the user mentions a custom location; confirm the default path: "This project will be created at `<project-base>/<name>/`."
 
-Note: Hosting environment and scaffold profile are already captured in `environment.md` during first-time setup. Read them but do not re-ask.
+Note: Hosting environment, scaffold profile, and project base path are already captured in `environment.md` during first-time setup. Read them but do not re-ask.
 
 ## Rules
 
@@ -40,6 +41,9 @@ environment: <read from environment.md>
 context:
   scaffold_profile: <read from environment.md>
   context_window: <read from environment.md>
+path:
+  base: <from environment.md or per-project override>
+  full: <base>/<name>/
 notes: <any additional context from the user>
 ```
 

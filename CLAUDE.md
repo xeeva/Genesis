@@ -40,6 +40,10 @@ Before anything else, check whether `personalisation.md` and `environment.md` ex
      - **Max:** Set context window to 200000, scaffold profile to `standard`
      - **ProMax:** Set context window to 1000000, scaffold profile to `full`
      - **API:** Ask what context window size to budget for (default 200000). Set scaffold profile to `standard` unless they specify a preference.
+   - Ask: "Where would you like projects to be created?" (default ~/claude/)
+     - Store as **Project base** in `environment.md` Paths section
+     - Derive Project target as `<project-base>/<project-name>/`
+     - Derive Memory path by slugifying the absolute project target path
    - Write `environment.md` with their answers (use `environment.md.example` as the template)
 
 2. **Personalisation** (if `personalisation.md` is missing):
@@ -80,13 +84,15 @@ Follow these four phases in order. Do not skip phases.
 
 Extract as much as you can from the user's opening message before asking questions. Only ask what remains unknown. Cap at 2-4 questions maximum.
 
-Read `personalisation.md` and `environment.md` before starting the interview. The hosting environment is already known from setup, so do not re-ask it.
+Read `personalisation.md` and `environment.md` before starting the interview. The hosting environment and project base path are already known from setup, so do not re-ask them.
 
 Gather:
 1. **Project name** (kebab-case, concise)
 2. **Purpose** (one sentence describing what the project does)
 3. **Tech stack** (language, framework, runtime)
 4. **Key integrations** (databases, APIs, auth providers, message queues, external services)
+
+The project path is determined by `environment.md` > Paths > Project base combined with the project name. If the user specifies a custom path in their message, use that as a per-project override.
 
 If the user's opening message already covers most of these, ask only 1-2 clarifying questions. Never ask what the user has already stated.
 
@@ -96,7 +102,7 @@ Produce a structured plan and present it for confirmation:
 
 ```
 Project: <name>
-Path: ~/claude/<name>/
+Path: <project-base>/<name>/
 Stack: <language, framework, key dependencies>
 Agents: <list of domain + workflow agents>
 Skills: <base set + domain-specific skills>
@@ -110,13 +116,13 @@ Wait for the user to confirm or request adjustments before proceeding.
 
 Create the target directory and write all files:
 
-1. Create `~/claude/<project-name>/` and full directory tree
+1. Create `<project-base>/<project-name>/` and full directory tree (read Project base from `environment.md`, or use per-project override)
 2. Write `CLAUDE.md` using the template, filled with project-specific rules
 3. Write `.claude/settings.json` with stack-appropriate hooks and permissions
 4. Write `.claude/agents/*.md` for each agent (domain and workflow)
 5. Write `.claude/skills/*/SKILL.md` for each skill (base set + dynamic)
 6. Write `.mcp.json` if integrations are needed
-7. Write memory files (user profile, project context, MEMORY.md index) to `~/.claude/projects/-home-xeeva-claude-<project-name>/memory/`
+7. Write memory files (user profile, project context, MEMORY.md index) to `~/.claude/projects/<slugified-absolute-target>/memory/` (derive by expanding the project target to an absolute path, replacing `/` with `-`, stripping the leading `-`)
 8. Write application scaffold (see Scaffold Boundary below)
 9. Write `.gitignore` appropriate to the stack
 
@@ -147,10 +153,10 @@ The litmus test: if a file contains logic that solves the user's stated problem,
 
 ### Phase 4: Finalise
 
-1. Run `cd ~/claude/<project-name>/ && git init && git add -A && git commit -m "Initial scaffold from Genesis"`
+1. Run `cd <resolved-project-path>/ && git init && git add -A && git commit -m "Initial scaffold from Genesis"`
 2. Update the project registry in Genesis memory
 3. Print a summary including: project path, agents created, skills available, next steps
-4. Tell the user: `cd ~/claude/<project-name>/ && claude`
+4. Tell the user: `cd <resolved-project-path>/ && claude`
 
 ## Global Rules (apply to ALL generated projects)
 
@@ -189,11 +195,11 @@ Seed into every generated project's memory from `personalisation.md` > User Prof
 
 ## Constraints
 
-- Target directory: read from `environment.md` > Paths > Project target. Default: `~/claude/<project-name>/`.
+- Target directory: read Project base from `environment.md` > Paths > Project base, combine with project name. Per-project overrides from the interview take precedence. Default base: `~/claude/`.
+- Memory path: derived from the absolute project target path by slugifying (expand `~`, replace `/` with `-`, strip leading `-`), under `~/.claude/projects/`.
 - Greenfield only. If the target directory already exists, refuse and explain. Never overwrite.
 - Never modify Genesis's own files during generation.
 - Language and locale: read from `personalisation.md`. Apply to all generated content.
-- Memory path for generated projects: read from `environment.md` > Paths > Memory path.
 - Never overwrite `personalisation.md` or `environment.md` during any operation.
 
 ## Prerequisites
@@ -209,6 +215,8 @@ Always include these **workflow agents** in every project:
 
 Select **domain agents** based on the project type and scaffold profile. The scaffold profile (lean, standard, full) determines the maximum number of domain agents: lean = 1-2, standard = 2-3, full = 3-4. Consult `.claude/skills/genesis/references/agent-catalogue.md` for the full catalogue and per-agent profile tags.
 
+Include the **risk-evaluator** agent (cross-cutting) for any project with database, external API, cloud service, message queue, or infrastructure integrations. When included, also configure the PreToolUse Bash hook for automatic risk screening and add the `/risk` skill.
+
 ## Skill Selection Guidelines
 
 Always include these **base skills** in every project:
@@ -222,6 +230,7 @@ Select **dynamic skills** based on the project domain and scaffold profile. The 
 - Frontend projects: `/component`, `/storybook`
 - CLI projects: `/run`, `/build`
 - Data projects: `/pipeline`, `/query`
+- Projects with external integrations: `/risk` (evaluate operation risk before execution)
 
 ## MCP Server Selection
 

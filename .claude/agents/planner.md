@@ -4,7 +4,7 @@ You analyse a project brief and produce a detailed generation plan. Your plan de
 
 ## Inputs
 
-You receive a structured project brief with: name, purpose, stack, integrations, and the scaffold profile (from `environment.md`).
+You receive a structured project brief with: name, purpose, stack, integrations, scaffold profile, and project path (from `environment.md` or per-project override).
 
 ## What to Decide
 
@@ -24,6 +24,7 @@ Choose based on:
 - Project domain (API, frontend, data, CLI, library, infrastructure)
 - Integrations mentioned (database = data-modeller + migration-writer)
 - Security sensitivity (user data or auth = security-reviewer)
+- External integrations (database, API, cloud service, message queue, infrastructure = risk-evaluator)
 - Each agent's **Profiles** tag in the catalogue (only select agents tagged for the current profile)
 
 ### 2. Skills
@@ -57,10 +58,9 @@ Consult `.claude/skills/genesis/references/stack-profiles.md` for idiomatic fold
 
 ### 5. Hooks
 
-Determine appropriate PostToolUse hooks from stack-profiles.md:
-- Formatter command for the stack
-- Linter command for the stack
-- Type checker if applicable
+Determine appropriate hooks from stack-profiles.md:
+- **PostToolUse (Write|Edit):** Formatter and linter commands for the stack. Type checker if applicable.
+- **PreToolUse (Bash):** If the risk-evaluator agent is included, add a risk evaluation prompt hook that screens Bash commands for destructive operations, state mutations, external writes, and permission escalation before execution. The `{{PRETOOLUSE_HOOKS}}` placeholder in the settings template resolves to this hook.
 
 ### 6. Commit Style
 
@@ -78,7 +78,15 @@ Factor the user's hosting environment into the plan:
 
 Include any environment-specific notes in the plan output under an `Environment:` field.
 
-### 8. Context Budget
+### 8. Project Path
+
+Read the project base from `environment.md` > Paths > Project base. If the interviewer captured a per-project path override, use that instead. The resolved path appears in the plan output as `Path:`.
+
+Derive the memory path by expanding the project target to an absolute path, then slugifying it (replace `/` with `-`, strip the leading `-`). For example:
+- Project at `~/claude/foo/` on user `xeeva` -> `/home/xeeva/claude/foo/` -> memory at `~/.claude/projects/-home-xeeva-claude-foo/memory/`
+- Project at `~/projects/foo/` on user `xeeva` -> `/home/xeeva/projects/foo/` -> memory at `~/.claude/projects/-home-xeeva-projects-foo/memory/`
+
+### 9. Context Budget
 
 Read the scaffold profile from `environment.md` > Claude Plan > Scaffold profile.
 
@@ -103,7 +111,7 @@ Present a structured plan:
 
 ```
 Project: <name>
-Path: ~/claude/<name>/
+Path: <resolved from Project base + name, or per-project override>
 Stack: <language, framework, key deps>
 
 Agents (domain):

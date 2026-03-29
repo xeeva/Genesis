@@ -47,6 +47,8 @@ Genesis asks:
 
 Genesis reads your `environment.md` (platform, shell, package manager) and `personalisation.md` (locale, output style, role) before the interview. It never re-asks information captured during first-time setup.
 
+The project path is derived from the project base directory in `environment.md` combined with the project name. If you specify a custom path in your opening message, Genesis uses that instead.
+
 ## Context-Aware Scaffolding
 
 Genesis adjusts the size and complexity of the generated scaffold based on your Claude plan tier. This is critical because every file Genesis creates (CLAUDE.md, agents, skills, memory, settings) consumes context tokens that are loaded into every conversation. A scaffold that is too large for the plan can leave insufficient room for actual work.
@@ -157,6 +159,8 @@ migrations/
 docs/
 ```
 
+The base path (`~/claude/` in the example above) comes from the project base directory configured in `environment.md`. If you specified a different base path during setup or in your opening message, the plan reflects that instead.
+
 ### Adjustments
 
 You can request changes before confirming:
@@ -222,6 +226,8 @@ Genesis consults `.claude/skills/genesis/references/stack-profiles.md` for stack
 ### Agent Selection
 
 Genesis consults `.claude/skills/genesis/references/agent-catalogue.md` to select domain agents. The three workflow agents (test-runner, code-reviewer, doc-writer) are always included. Domain agents are selected based on project type, capped at 3-4 to avoid overwhelming the workspace.
+
+For projects with external integrations (databases, APIs, cloud services, message queues), Genesis includes a **risk-evaluator** agent that screens potentially dangerous operations before execution. It uses a severity rubric (1-5) to assess destructive operations, state mutations, external writes, and permission escalation. A PreToolUse hook on Bash commands provides automatic screening, and a `/risk` skill allows manual evaluation.
 
 ## Phase 4: Finalise
 

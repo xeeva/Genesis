@@ -89,7 +89,9 @@ Genesis also asks which Claude plan you are on (Pro, Max, ProMax, or API key). T
 
 The ProMax plan with its 1M context window provides the best Genesis experience, with room for comprehensive infrastructure and extended working sessions without compaction.
 
-It writes these answers to `environment.md` in the Genesis root. This file is gitignored and preserved across updates. You can change your scaffold profile at any time by editing this file.
+Finally, Genesis asks where you want projects to be created (default `~/claude/`). This becomes the base directory for all generated projects. You can override this per-project during the interview phase.
+
+It writes these answers to `environment.md` in the Genesis root. This file is gitignored and preserved across updates. You can change your scaffold profile or project base path at any time by editing this file.
 
 ### Step 2: Personalisation
 

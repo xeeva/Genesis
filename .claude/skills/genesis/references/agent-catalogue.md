@@ -167,6 +167,26 @@ These agents are included in every generated project regardless of domain.
 
 ---
 
+## Cross-Cutting Agents
+
+These agents apply across multiple project types based on integration characteristics, not domain.
+
+**risk-evaluator**
+- **Purpose:** Evaluate the risk of potentially dangerous operations using a rubric-based severity scoring system (1-5 scale). Screens destructive operations, state mutations, external writes, and permission escalation before execution.
+- **Model:** sonnet
+- **Tools:** Read, Grep, Glob
+- **Best for:** Projects that interact with databases, external APIs, cloud services, message queues, or infrastructure
+- **Profiles:** lean (only if external integrations), standard, full
+- **Severity rubric:**
+  - **1 (Informational):** Read-only queries, ls, cat, grep, file reads. Action: proceed.
+  - **2 (Low):** Local config edits, dev-only writes, test data changes. Action: proceed.
+  - **3 (Moderate):** Migrations, staging API writes, shared config changes, non-production queue publishing. Action: warn user.
+  - **4 (High):** DROP TABLE, DELETE without WHERE, rm -rf on data dirs, production API writes, chmod 777. Action: halt, require confirmation.
+  - **5 (Critical):** Production data deletion, terraform destroy, deployment commands, bulk production publishes. Action: halt, full assessment, explicit acknowledgement.
+- **Context sensitivity:** The same operation scores differently by project. DELETE FROM in a test-data-generator = severity 2. DELETE FROM users in a user-service = severity 5. The agent reads CLAUDE.md integrations to calibrate.
+
+---
+
 ## Selection Guidelines
 
 1. **Always include** the three workflow agents (test-runner, code-reviewer, doc-writer)
@@ -178,3 +198,4 @@ These agents are included in every generated project regardless of domain.
 7. **Prefer sonnet** for most agents; reserve opus for security and complex architectural review
 8. **Every agent should have a clear, non-overlapping purpose** with other agents in the same project
 9. **Respect the scaffold profile.** Lean profiles get 1-2 domain agents (the most critical). Standard profiles get 2-3. Full profiles get 3-4. Workflow agents are always included regardless of profile. Check each agent's **Profiles** tag before selecting it.
+10. **Include risk-evaluator** for any project with database, external API, cloud service, message queue, or infrastructure integrations. It screens dangerous operations before execution via a PreToolUse hook. When included, also add the `/risk` skill for manual invocation.

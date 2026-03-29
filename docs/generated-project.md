@@ -119,6 +119,8 @@ Every generated project includes a **statusline configuration** that displays th
 
 This gives you immediate visibility into when you might want to run `/compact` to free up context space.
 
+When the risk-evaluator agent is included, a **PreToolUse hook** on Bash commands is also configured. This injects a risk evaluation prompt before every shell command, automatically screening for dangerous operations.
+
 Permissions and hooks are tailored to the stack using the stack profiles reference.
 
 ## .claude/agents/
@@ -136,6 +138,10 @@ Reviews code for quality, style, correctness, security, and adherence to the pro
 ### doc-writer.md
 
 Generates and updates documentation, including README files, architecture docs, and inline comments. Uses Read, Write, Edit, Grep, and Glob tools. Invoked after adding features, when architecture changes, and on request.
+
+### risk-evaluator.md (when external integrations are present)
+
+Evaluates the risk of potentially dangerous operations using a 1-5 severity rubric. Screens destructive commands (DROP TABLE, rm -rf), state mutations (migrations, config changes), external writes (API calls, deployments), and permission escalation. Severity 1-2 proceeds silently, severity 3 warns, severity 4-5 halts and requires explicit confirmation. The rubric is context-sensitive: the same operation scores differently based on the project's specific integrations.
 
 ### Domain agents (2-4 additional)
 

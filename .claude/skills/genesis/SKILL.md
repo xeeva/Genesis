@@ -20,7 +20,7 @@ Read the user's request carefully. Extract everything you can before asking ques
 3. Tech stack (language, framework, runtime)
 4. Key integrations (databases, APIs, auth, external services)
 
-Hosting environment is already captured in `environment.md`. Do not re-ask.
+Hosting environment and project base path are already captured in `environment.md`. Do not re-ask. Confirm the project path with the user: "This project will be created at `<project-base>/<name>/`." Allow per-project overrides if the user specifies a custom location.
 
 **Rules:**
 - If the user provided 3+ of these, ask only what's missing (1-2 questions max)
@@ -36,7 +36,7 @@ Once you have all information, produce this plan and present it:
 
 ```
 Project: <name>
-Path: ~/claude/<name>/
+Path: <project-base>/<name>/
 Stack: <language, framework, key dependencies>
 
 Agents (domain):
@@ -86,10 +86,10 @@ Read the templates and references before generating:
 
 ### 3.1 Directory structure
 ```bash
-mkdir -p ~/claude/<name>/.claude/agents
-mkdir -p ~/claude/<name>/.claude/skills/<skill-name> (for each skill)
-mkdir -p ~/claude/<name>/docs
-mkdir -p ~/claude/<name>/<stack-specific-dirs>
+mkdir -p <resolved-path>/.claude/agents
+mkdir -p <resolved-path>/.claude/skills/<skill-name> (for each skill)
+mkdir -p <resolved-path>/docs
+mkdir -p <resolved-path>/<stack-specific-dirs>
 ```
 
 ### 3.2 CLAUDE.md
@@ -98,6 +98,7 @@ Read the scaffold profile from `environment.md`. If **lean**, use `templates/CLA
 ### 3.3 .claude/settings.json
 Use `templates/settings.json.tmpl` as skeleton. Configure:
 - Permissions appropriate to the stack (consult stack-profiles.md)
+- PreToolUse hooks: if the risk-evaluator agent is included, resolve `{{PRETOOLUSE_HOOKS}}` to a Bash matcher with a prompt hook that screens commands for risk (destructive operations, state mutations, external writes, permission escalation, severity 1-5). If risk-evaluator is not included, resolve to empty.
 - PostToolUse hooks for the stack's formatter and linter
 - Stop hook for test/commit reminders
 
@@ -107,20 +108,22 @@ Write valid JSON, not a template. Replace all placeholders with actual values.
 For each agent in the plan:
 - Use `templates/agent.md.tmpl` as skeleton
 - Fill with role-specific instructions from agent-catalogue.md
-- Write to `~/claude/<name>/.claude/agents/<agent-name>.md`
+- Write to `<resolved-path>/.claude/agents/<agent-name>.md`
+- For the **risk-evaluator** agent: include the full severity rubric (1-5 scale) in the Guidelines section. Include the project's specific integrations so the rubric can be context-sensitive. Instruct the agent to read CLAUDE.md for additional project context.
 
 ### 3.5 Skills
 For each skill in the plan:
 - Use `templates/skill.md.tmpl` as skeleton
 - Write a clear description that tells Claude when to invoke it
 - Include the specific commands or workflow for the stack
-- Write to `~/claude/<name>/.claude/skills/<skill-name>/SKILL.md`
+- Write to `<resolved-path>/.claude/skills/<skill-name>/SKILL.md`
+- When the **risk-evaluator** agent is included, also generate a `/risk` skill that accepts a command or operation description and invokes the risk-evaluator agent to score it
 
 ### 3.6 .mcp.json (if needed)
 Use `templates/mcp.json.tmpl` as skeleton. Only include servers for integrations mentioned in the plan. Write valid JSON.
 
 ### 3.7 Memory files
-Create the memory directory at `~/.claude/projects/-home-xeeva-claude-<name>/memory/`
+Create the memory directory. Derive the path by expanding the project target to an absolute path, slugifying it (replace `/` with `-`, strip leading `-`), then prepend `~/.claude/projects/` and append `/memory/`. For example, a project at `~/claude/foo/` for user `xeeva` becomes `~/.claude/projects/-home-xeeva-claude-foo/memory/`.
 
 If the scaffold profile is **lean**, write a single consolidated `MEMORY.md` that includes user profile and project context inline (no separate files). This reduces the number of files loaded at session start.
 
@@ -143,14 +146,14 @@ Consult stack-profiles.md for the appropriate structure. Generate:
 
 1. Initialise git and create the first commit:
 ```bash
-cd ~/claude/<name> && git init && git add -A && git commit -m "Initial scaffold from Genesis"
+cd <resolved-path> && git init && git add -A && git commit -m "Initial scaffold from Genesis"
 ```
 
 2. Update the project registry. Read the current registry from Genesis memory, append the new project entry, and write it back.
 
 3. Print a summary:
 ```
-Project created: ~/claude/<name>/
+Project created: <resolved-path>/
 Stack: <stack>
 Agents: <count> (<names>)
 Skills: <count> (<names>)
@@ -158,7 +161,7 @@ MCP: <servers or "none">
 Context profile: <lean | standard | full> (~<N>k tokens, <P>% of <context_window>)
 
 Next steps:
-  cd ~/claude/<name>/
+  cd <resolved-path>/
   claude
 ```
 

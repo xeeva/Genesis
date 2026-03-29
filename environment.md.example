@@ -19,8 +19,9 @@ Run the first-time setup again or edit this file directly to change settings.
 ## Paths
 
 - **Genesis directory:** ~/claude/genesis/
-- **Project target:** ~/claude/<project-name>/
-- **Memory path:** ~/.claude/projects/-home-xeeva-claude-<project-name>/memory/
+- **Project base:** <~/claude/ | ~/projects/ | custom path>
+- **Project target:** <project-base>/<project-name>/
+- **Memory path:** ~/.claude/projects/<slugified-absolute-target>/memory/
 
 ## Package Manager
 

@@ -134,6 +134,24 @@ Edit `environment.md` and update the three fields under `## Claude Plan`:
 
 New projects will use the updated profile. Existing projects keep their original scaffold; you would need to manually add agents or skills if you want to enrich them.
 
+### How do I change where projects are created?
+
+Edit `environment.md` in the Genesis root directory and change the **Project base** value under **Paths** to your preferred directory. The default is `~/claude/`. For example, to create projects in `~/projects/`, change `Project base` to `~/projects/`. You can also override the path for a specific project during the interview phase by mentioning a custom location.
+
+### What is the risk evaluator?
+
+The risk-evaluator is a cross-cutting agent included in any generated project that interacts with databases, external APIs, cloud services, message queues, or infrastructure. It evaluates potentially dangerous operations using a severity rubric:
+
+- **Severity 1-2** (Informational/Low): Read-only operations, local config edits. Proceeds automatically.
+- **Severity 3** (Moderate): Migrations, staging writes, shared config changes. Warns the user.
+- **Severity 4-5** (High/Critical): DROP TABLE, production writes, terraform destroy. Halts and requires explicit confirmation.
+
+The rubric is context-sensitive: it reads the project's CLAUDE.md to understand integrations, so the same command scores differently depending on the project.
+
+### Can I disable the risk evaluator?
+
+Yes. Remove the `risk-evaluator.md` file from `.claude/agents/` in the generated project and remove the PreToolUse hook from `.claude/settings.json`. The risk evaluator is a safety net, not a requirement.
+
 ### Does Genesis support monorepos or multi-package projects?
 
 Genesis generates single-project scaffolds. For monorepos, you can generate each package separately and then restructure the workspace. Alternatively, describe a monorepo layout during the interview phase; Genesis will do its best to accommodate, though this is not its primary use case.
