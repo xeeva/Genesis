@@ -17,6 +17,7 @@ Read the user's request carefully. Extract everything you can before asking ques
 2. Purpose (one sentence)
 3. Tech stack (language, framework, runtime)
 4. Key integrations (databases, APIs, auth, external services)
+5. Hosting environment (WSL, native Linux, macOS, or Windows)
 
 **Rules:**
 - If the user provided 3+ of these, ask only what's missing (1-2 questions max)
@@ -61,7 +62,11 @@ Wait for user confirmation. If they request changes, adjust and re-present.
 
 ## Phase 3: Generate
 
-After confirmation, create the project. Read the templates and references before generating:
+After confirmation, create the project.
+
+**Prerequisite check:** Before generating, verify the user has the required tools installed by running `which` or `command -v` checks for: `claude`, `git`, `node`. Also check for stack-specific tools (e.g. `python`, `go`, `cargo`, `ruby`, `java`). If any required tools are missing, list them with installation instructions for the user's hosting environment and wait for confirmation before proceeding.
+
+Read the templates and references before generating:
 
 1. Read `.claude/skills/genesis/templates/` for all template files
 2. Read `.claude/skills/genesis/references/stack-profiles.md` for stack-specific conventions

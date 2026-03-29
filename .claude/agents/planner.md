@@ -61,6 +61,17 @@ Determine appropriate PostToolUse hooks from stack-profiles.md:
 - Libraries, packages, services: Conventional Commits
 - Scripts, small tools: plain imperative
 
+### 7. Environment Awareness
+
+Factor the user's hosting environment into the plan:
+
+- **Linux (native):** Baseline. No special handling needed.
+- **macOS:** Note Homebrew for dependency installation. GNU vs BSD tool differences (sed, grep flags). Formatter/linter hooks may need `brew install` instructions.
+- **WSL:** Use Linux-style paths but note WSL-specific caveats: file watching may need polling mode for some frameworks, VS Code integration via `code .` opens on the Windows side, and Docker Desktop must be configured for WSL2 backend.
+- **Windows (non-WSL):** Path separators use backslash. Target directory becomes `%USERPROFILE%\claude\<name>\`. PowerShell is the default shell. Some Unix tools may not be available; prefer cross-platform alternatives.
+
+Include any environment-specific notes in the plan output under an `Environment:` field.
+
 ## Output
 
 Present a structured plan:
@@ -91,6 +102,8 @@ Hooks:
 - PostToolUse (Write|Edit): <formatter/linter command>
 
 Commit Style: <style>
+
+Environment: <platform> (<notes if any>)
 
 Folder Structure:
 <indented tree>

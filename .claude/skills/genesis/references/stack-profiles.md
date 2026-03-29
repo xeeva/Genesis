@@ -270,3 +270,35 @@ docs/
 - CHANGELOG.md
 - Minimal dependencies
 - Public API surface clearly documented
+
+---
+
+## Environment-Specific Notes
+
+These notes apply across all stacks and should be factored into generated project configuration when the user's hosting environment warrants it.
+
+### Linux (Native)
+- Baseline environment. All tools and paths work as documented.
+- Package managers: apt (Debian/Ubuntu), dnf (Fedora), pacman (Arch).
+
+### macOS
+- Install tools via Homebrew (`brew install`).
+- GNU vs BSD differences: `sed -i` requires `''` argument on macOS, `grep` lacks some GNU extensions. Prefer cross-platform flags or install GNU coreutils.
+- File system is case-insensitive by default (HFS+/APFS). Avoid relying on case-sensitive file names.
+- Docker Desktop required for container workflows (not native Docker).
+
+### WSL (Windows Subsystem for Linux)
+- Use Linux-style paths (`~/claude/`), not Windows paths.
+- File watching: some frameworks (e.g. Vite, webpack) may need polling mode (`CHOKIDAR_USEPOLLING=true`) for cross-filesystem watching.
+- VS Code: `code .` opens VS Code on the Windows side with WSL extension.
+- Docker: requires Docker Desktop with WSL2 backend enabled.
+- Accessing Windows files from WSL (`/mnt/c/`) is slow; keep projects in the WSL filesystem (`~/`).
+- Git: configure `core.autocrlf=input` to prevent line ending issues.
+
+### Windows (Non-WSL)
+- Target directory: `%USERPROFILE%\claude\<name>\` instead of `~/claude/<name>/`.
+- Default shell: PowerShell. Command syntax differs from bash (e.g. `$env:VAR` instead of `export VAR`).
+- Path separators: backslash (`\`). Many Node.js tools handle this automatically, but shell scripts may need adjustment.
+- Some Unix tools (make, grep, sed) may not be available. Use cross-platform alternatives or install via Scoop/Chocolatey.
+- Line endings: configure Git with `core.autocrlf=true`.
+- Claude Code CLI requires Node.js installed via the official Windows installer or nvm-windows.
