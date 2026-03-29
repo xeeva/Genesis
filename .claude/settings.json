@@ -22,7 +22,7 @@
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "If you just completed generating a project, remind the user to cd into the project directory and start a new Claude session there. Also confirm the project was added to the registry."
+            "prompt": "Check the last assistant message. ONLY if it contains a project generation summary (phrases like 'Project created:', 'scaffold complete', 'Next steps:', or a project path like '~/claude/<name>/'), remind the user to cd into the project directory and start a new Claude session there, and confirm the project was added to the registry. If the last message is about setup, answering questions, planning, or anything other than a completed project generation, respond with exactly: 'No action needed.'"
           }
         ]
       }

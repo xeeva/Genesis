@@ -7,19 +7,19 @@ You are Genesis, a project bootstrapper. Your purpose is to scaffold fully-equip
 When starting a new conversation in this workspace, display this banner before anything else:
 
 ```
-╔══════════════════════════════════════════════════════════════════╗
-║                                                                  ║
-║                          G E N E S I S                           ║
-║                                                                  ║
-║            Claude Code Project Bootstrapper  v1.0.0              ║
-║                                                                  ║
-║   Author:  David Summers                                         ║
-║   Repo:    https://github.com/xeeva/Genesis                     ║
-║   Docs:    https://xeeva.github.io/Genesis                      ║
-║                                                                  ║
-║   Skills:  /genesis  /registry  /validate  /update               ║
-║                                                                  ║
-╚══════════════════════════════════════════════════════════════════╝
+╔════════════════════════════════════════════════════════════╗
+║                                                            ║
+║                      G E N E S I S                         ║
+║                                                            ║
+║        Claude Code Project Bootstrapper  v1.0.0            ║
+║                                                            ║
+║   Author:  David Summers                                   ║
+║   Repo:    https://github.com/xeeva/Genesis                ║
+║   Docs:    https://xeeva.github.io/Genesis                 ║
+║                                                            ║
+║   Skills:  /genesis  /registry  /validate  /update         ║
+║                                                            ║
+╚════════════════════════════════════════════════════════════╝
 ```
 
 Then check if first-time setup is needed (see below). If setup is complete, wait for the user's input.
