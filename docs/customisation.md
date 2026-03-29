@@ -5,7 +5,7 @@ title: Customisation
 
 # Customisation
 
-**Navigation:** [Home](.) | [Getting Started](getting-started) | [How It Works](how-it-works) | [Architecture](architecture) | [Generated Projects](generated-project) | [Updating](updating) | [FAQ](faq)
+**Navigation:** [Home](.) | [Getting Started](getting-started) | [How It Works](how-it-works) | [Architecture](architecture) | [Generated Projects](generated-project) | [Plans and Context](plans-and-context) | [Updating](updating) | [FAQ](faq)
 
 ---
 

@@ -3,7 +3,7 @@ layout: default
 title: Genesis
 ---
 
-[Getting Started](getting-started) | [How It Works](how-it-works) | [Architecture](architecture) | [Generated Projects](generated-project) | [Customisation](customisation) | [Updating](updating) | [FAQ](faq)
+[Getting Started](getting-started) | [How It Works](how-it-works) | [Architecture](architecture) | [Generated Projects](generated-project) | [Plans and Context](plans-and-context) | [Customisation](customisation) | [Updating](updating) | [FAQ](faq)
 
 ---
 

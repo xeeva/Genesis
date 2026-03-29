@@ -5,7 +5,7 @@ title: How It Works
 
 # How It Works
 
-**Navigation:** [Home](.) | [Getting Started](getting-started) | [Architecture](architecture) | [Generated Projects](generated-project) | [Customisation](customisation) | [Updating](updating) | [FAQ](faq)
+**Navigation:** [Home](.) | [Getting Started](getting-started) | [Architecture](architecture) | [Generated Projects](generated-project) | [Plans and Context](plans-and-context) | [Customisation](customisation) | [Updating](updating) | [FAQ](faq)
 
 ---
 
@@ -49,25 +49,70 @@ Genesis reads your `environment.md` (platform, shell, package manager) and `pers
 
 ## Context-Aware Scaffolding
 
-Genesis adjusts the size and complexity of the generated scaffold based on the user's Claude plan tier. This prevents the scaffold infrastructure from consuming too much of the available context window.
+Genesis adjusts the size and complexity of the generated scaffold based on your Claude plan tier. This is critical because every file Genesis creates (CLAUDE.md, agents, skills, memory, settings) consumes context tokens that are loaded into every conversation. A scaffold that is too large for the plan can leave insufficient room for actual work.
+
+### Why This Matters
+
+Claude Code loads your project's CLAUDE.md, settings, and memory files at the start of every session. When you invoke an agent, its definition is loaded too. Skills are loaded when invoked. All of this draws from your context window, which varies significantly by plan:
+
+| Plan | Context Window | What That Means |
+|------|---------------|-----------------|
+| **Pro** | 200k tokens | Enough for focused work sessions. Infrastructure needs to be lean to leave room for complex tasks, large file reads, and multi-step workflows. |
+| **Max** | 200k tokens | Same context window as Pro, but with higher rate limits and more messages per day. A moderate scaffold works well. |
+| **ProMax** | 1M tokens | Five times the context of Pro/Max. Room for comprehensive infrastructure, detailed CLAUDE.md files, full agent suites, and extended working sessions without compaction. |
+| **API** | Varies | Depends on the model and configuration. Genesis asks for the context budget during setup. |
+
+A full scaffold (7 agents, 7 skills, detailed CLAUDE.md, 3 memory files, MCP configs) can consume 15-25k tokens. On a Pro plan, that is 7-12% of the entire context window gone before you type your first message. On ProMax, it is 1.5-2.5%, leaving plenty of room.
 
 ### Scaffold Profiles
 
-| Profile | Plan Tier | Context Window | Domain Agents | Dynamic Skills | CLAUDE.md Style |
-|---------|-----------|----------------|---------------|----------------|-----------------|
-| **lean** | Pro | 200k | 1-2 | 1-2 | Condensed |
-| **standard** | Max | 200k | 2-3 | 2-3 | Standard |
-| **full** | ProMax / API | 1M | 3-4 | 3-4 | Detailed |
+Genesis maps each plan tier to a scaffold profile that balances infrastructure richness against context budget:
+
+| Profile | Plan Tier | Context Window | Domain Agents | Dynamic Skills | CLAUDE.md Style | Est. Cost |
+|---------|-----------|----------------|---------------|----------------|-----------------|-----------|
+| **lean** | Pro | 200k | 1-2 | 1-2 | Condensed | ~5-8k tokens (2.5-4%) |
+| **standard** | Max | 200k | 2-3 | 2-3 | Standard | ~10-15k tokens (5-7.5%) |
+| **full** | ProMax / API | 1M | 3-4 | 3-4 | Detailed | ~15-25k tokens (1.5-2.5%) |
+
+The estimated cost is shown in the plan output (Phase 2) so you can see exactly how much of your context window the scaffold will use.
 
 The scaffold profile is set during first-time setup and stored in `environment.md`. It can be overridden at any time by editing the file or by requesting a different profile during the plan phase.
 
 ### What Changes by Profile
 
-- **lean:** Uses a condensed CLAUDE.md template (merged sections, no structure tree), consolidates memory into a single file, selects only the most critical domain agent for the project type
-- **standard:** Uses the full CLAUDE.md template, full memory files, moderate agent/skill selection
-- **full:** Uses the detailed CLAUDE.md template with extended context, full memory files, comprehensive agent/skill selection
+**Lean (Pro)**
+- Condensed CLAUDE.md template: language, error handling, code standards, and testing rules merged into a single "Standards" section. No project structure tree (the filesystem is self-documenting). Agents and skills listed in a compact table rather than separate sections.
+- Consolidated memory: user profile and project context written inline in a single MEMORY.md rather than three separate files.
+- Minimal agents: only the single most critical domain agent for the project type (e.g. api-designer for an API project, data-modeller for a database project) plus the three mandatory workflow agents.
+- Context management section: the generated CLAUDE.md includes guidance on using `/compact` when context exceeds 60%.
 
-Every generated project includes a statusline that shows context usage percentage, so users can monitor their budget in real time.
+**Standard (Max)**
+- Full CLAUDE.md template with all sections.
+- Full memory files (MEMORY.md index, user-profile.md, project-context.md).
+- Moderate agent selection: 2-3 domain agents covering the primary concerns of the project.
+- 2-3 dynamic skills tailored to the domain.
+
+**Full (ProMax / API with large context)**
+- Detailed CLAUDE.md with extended context sections and additional project-specific rules.
+- Full memory files.
+- Comprehensive agent selection: 3-4 domain agents covering primary and secondary concerns.
+- 3-4 dynamic skills.
+- The generated project has room for long, complex sessions without worrying about context limits.
+
+### Context Monitoring
+
+Every generated project, regardless of profile, includes a statusline that displays the current model and context usage percentage at the bottom of the Claude Code interface. This gives you real-time visibility into how much of your context window is in use, so you can run `/compact` before things get tight.
+
+### Upgrading Your Experience
+
+If you start on a Pro plan and later upgrade to Max or ProMax, you can update your scaffold profile to take advantage of the additional context:
+
+1. Edit `environment.md` in the Genesis root directory
+2. Change the **Tier** and **Context window** values
+3. Change the **Scaffold profile** to match (e.g. `standard` for Max, `full` for ProMax)
+4. New projects will use the updated profile. Existing projects are unaffected.
+
+Higher-tier plans unlock progressively richer scaffolds: more specialised agents, more domain-specific skills, and more detailed project instructions. The ProMax plan with its 1M context window provides the best Genesis experience, with room for comprehensive infrastructure and extended working sessions.
 
 ## Phase 2: Plan
 

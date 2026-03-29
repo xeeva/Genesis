@@ -5,7 +5,7 @@ title: Generated Project Anatomy
 
 # Generated Project Anatomy
 
-**Navigation:** [Home](.) | [Getting Started](getting-started) | [How It Works](how-it-works) | [Architecture](architecture) | [Customisation](customisation) | [Updating](updating) | [FAQ](faq)
+**Navigation:** [Home](.) | [Getting Started](getting-started) | [How It Works](how-it-works) | [Architecture](architecture) | [Plans and Context](plans-and-context) | [Customisation](customisation) | [Updating](updating) | [FAQ](faq)
 
 ---
 
@@ -80,7 +80,11 @@ The most important file in any generated project. It serves as the project's bra
 
 This file is consulted by Claude at the start of every session and governs all code generation, reviews, and suggestions.
 
-For lean scaffold profiles (Pro plan), Genesis uses a condensed CLAUDE.md template that merges multiple sections to reduce token consumption by approximately 50%.
+The size and structure of CLAUDE.md varies by scaffold profile:
+
+- **Lean (Pro plan):** Uses a condensed template that merges language, error handling, code standards, and testing into a single "Standards" section. Omits the project structure tree and key commands sections. Combines agents and skills into a compact table. Includes a context management note. Approximately 50% smaller than the standard template.
+- **Standard (Max plan):** The full template with all sections clearly separated.
+- **Full (ProMax plan):** The full template with additional context sections and extended project-specific rules.
 
 ## .claude/settings.json
 
@@ -107,7 +111,13 @@ Configures Claude Code's permissions and automated hooks for the project.
 - **PostToolUse hook**: runs `ruff check --fix` and `ruff format` automatically after Claude edits `.py` files
 - **Stop hook**: reminds Claude to run tests and commit before ending a session
 
-Every generated project includes a statusline configuration that displays the current model and context usage percentage. This appears at the bottom of the Claude Code interface.
+Every generated project includes a **statusline configuration** that displays the current model and context usage percentage at the bottom of the Claude Code interface. This is particularly valuable for Pro and Max users who need to monitor their context budget, but useful for all plans. The statusline updates in real time as you work, showing something like:
+
+```
+[Claude Sonnet 4.6] ctx: 34%
+```
+
+This gives you immediate visibility into when you might want to run `/compact` to free up context space.
 
 Permissions and hooks are tailored to the stack using the stack profiles reference.
 

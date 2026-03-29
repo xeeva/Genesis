@@ -5,7 +5,7 @@ title: Getting Started
 
 # Getting Started
 
-**Navigation:** [Home](.) | [How It Works](how-it-works) | [Architecture](architecture) | [Generated Projects](generated-project) | [Customisation](customisation) | [Updating](updating) | [FAQ](faq)
+**Navigation:** [Home](.) | [How It Works](how-it-works) | [Architecture](architecture) | [Generated Projects](generated-project) | [Plans and Context](plans-and-context) | [Customisation](customisation) | [Updating](updating) | [FAQ](faq)
 
 ---
 
@@ -78,9 +78,18 @@ Genesis asks about your platform:
 - **Shell**: bash, zsh, or PowerShell
 - **Package manager**: apt, brew, dnf, pacman, scoop, etc.
 
-Genesis also asks which Claude plan you are on (Pro, Max, ProMax, or API key). This determines the scaffold profile, which controls how much infrastructure is generated to fit within your context window budget.
+Genesis also asks which Claude plan you are on (Pro, Max, ProMax, or API key). This determines the **scaffold profile**, which controls how much infrastructure Genesis generates for each project:
 
-It writes these answers to `environment.md` in the Genesis root. This file is gitignored and preserved across updates.
+| Plan | Scaffold Profile | What You Get |
+|------|-----------------|--------------|
+| Pro | lean | Condensed CLAUDE.md, 1-2 domain agents, 1-2 dynamic skills. Optimised to leave maximum context for your work. |
+| Max | standard | Full CLAUDE.md, 2-3 domain agents, 2-3 dynamic skills. A solid balance of infrastructure and context headroom. |
+| ProMax | full | Detailed CLAUDE.md, 3-4 domain agents, 3-4 dynamic skills, extended context sections. Takes full advantage of the 1M context window. |
+| API | ask | Genesis asks for your context budget and recommends a profile. |
+
+The ProMax plan with its 1M context window provides the best Genesis experience, with room for comprehensive infrastructure and extended working sessions without compaction.
+
+It writes these answers to `environment.md` in the Genesis root. This file is gitignored and preserved across updates. You can change your scaffold profile at any time by editing this file.
 
 ### Step 2: Personalisation
 

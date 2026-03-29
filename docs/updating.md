@@ -5,7 +5,7 @@ title: Updating Genesis
 
 # Updating Genesis
 
-**Navigation:** [Home](.) | [Getting Started](getting-started) | [How It Works](how-it-works) | [Architecture](architecture) | [Generated Projects](generated-project) | [Customisation](customisation) | [FAQ](faq)
+**Navigation:** [Home](.) | [Getting Started](getting-started) | [How It Works](how-it-works) | [Architecture](architecture) | [Generated Projects](generated-project) | [Plans and Context](plans-and-context) | [Customisation](customisation) | [FAQ](faq)
 
 ---
 
