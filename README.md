@@ -126,7 +126,7 @@ Initialise git, update registry, provide next steps.
 
 <div align="center">
 
-<img src="docs/images/genesis-workflow.svg" alt="Genesis Workflow" width="100%" />
+<img src="images/genesis-workflow.svg" alt="Genesis Workflow" width="100%" />
 
 </div>
 
@@ -179,7 +179,7 @@ See the [detailed walkthrough](https://xeeva.github.io/Genesis/how-it-works) for
 
 <div align="center">
 
-<img src="docs/images/generated-project-arch.svg" alt="Generated Project Architecture" width="100%" />
+<img src="images/generated-project-arch.svg" alt="Generated Project Architecture" width="100%" />
 
 </div>
 
