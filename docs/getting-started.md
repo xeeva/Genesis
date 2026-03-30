@@ -49,12 +49,19 @@ Genesis works with bash, zsh, and PowerShell. Most Linux and macOS systems have 
 
 ## Cloning the Repository
 
+**Linux / macOS / WSL:**
 ```bash
 git clone https://github.com/xeeva/Genesis.git ~/claude/genesis
 cd ~/claude/genesis
 ```
 
-Genesis expects to live at `~/claude/genesis/`. This is the conventional location and is referenced in internal paths.
+**Windows (PowerShell):**
+```powershell
+git clone https://github.com/xeeva/Genesis.git $HOME\claude\genesis
+cd $HOME\claude\genesis
+```
+
+Genesis expects to live at `~/claude/genesis/` (or `$HOME\claude\genesis` on Windows). This is the conventional location and is referenced in internal paths.
 
 ## First-Time Setup
 

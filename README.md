@@ -61,9 +61,17 @@ Genesis itself is a Claude Code project. It uses the same agents, skills, and me
 
 ## Quick Start
 
+**Linux / macOS / WSL:**
 ```bash
 git clone https://github.com/xeeva/Genesis.git ~/claude/genesis
 cd ~/claude/genesis
+claude
+```
+
+**Windows (PowerShell):**
+```powershell
+git clone https://github.com/xeeva/Genesis.git $HOME\claude\genesis
+cd $HOME\claude\genesis
 claude
 ```
 
