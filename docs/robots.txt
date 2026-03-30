@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://xeeva.github.io/Genesis/sitemap.xml
