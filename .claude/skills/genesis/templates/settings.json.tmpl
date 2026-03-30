@@ -27,7 +27,7 @@
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "Before finishing, check: (1) Are there failing tests? If so, mention them. (2) Are there uncommitted changes? If so, ask if the user wants to commit."
+            "prompt": "Before finishing, check: (1) Are there failing tests? (2) Are there uncommitted changes? If either is true, respond with {\"ok\": false, \"reason\": \"Mention any failing tests and ask if the user wants to commit uncommitted changes.\"}. Otherwise, respond with {\"ok\": true}."
           }
         ]
       }
