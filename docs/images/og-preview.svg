@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6e40c9"/>
+      <stop offset="50%" style="stop-color:#9b4dca"/>
+      <stop offset="100%" style="stop-color:#f0883e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0d1117"/>
+
+  <!-- Gradient banner -->
+  <rect width="1200" height="200" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="600" y="120" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" font-size="72" font-weight="800" fill="#ffffff" letter-spacing="0.1em">G E N E S I S</text>
+
+  <!-- Tagline -->
+  <text x="600" y="170" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" font-size="22" fill="rgba(255,255,255,0.9)">The Claude that builds Claudes</text>
+
+  <!-- Description -->
+  <text x="600" y="280" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" font-size="28" fill="#e6edf3">Bootstrap fully-equipped Claude Code projects</text>
+  <text x="600" y="320" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" font-size="28" fill="#e6edf3">in under two minutes.</text>
+
+  <!-- Feature pills -->
+  <rect x="120" y="380" width="140" height="40" rx="20" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="190" y="405" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" font-size="15" fill="#58a6ff">Agents</text>
+
+  <rect x="290" y="380" width="130" height="40" rx="20" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="355" y="405" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" font-size="15" fill="#39d2c0">Skills</text>
+
+  <rect x="450" y="380" width="130" height="40" rx="20" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="515" y="405" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" font-size="15" fill="#bc8cff">Hooks</text>
+
+  <rect x="610" y="380" width="150" height="40" rx="20" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="685" y="405" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" font-size="15" fill="#f0883e">Memory</text>
+
+  <rect x="790" y="380" width="130" height="40" rx="20" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="855" y="405" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" font-size="15" fill="#3fb950">MCP</text>
+
+  <rect x="950" y="380" width="140" height="40" rx="20" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="1020" y="405" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" font-size="15" fill="#ff7b72">Testing</text>
+
+  <!-- Stacks -->
+  <text x="600" y="480" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" font-size="16" fill="#6e7681">Node.js / TypeScript  ·  Python  ·  Go  ·  Rust  ·  Ruby  ·  Java / Kotlin</text>
+
+  <!-- Author -->
+  <text x="600" y="560" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" font-size="16" fill="#484f58">github.com/xeeva/Genesis</text>
+
+  <!-- Border line at bottom of gradient -->
+  <rect x="0" y="198" width="1200" height="2" fill="#30363d"/>
+</svg>

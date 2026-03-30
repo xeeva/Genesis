@@ -1,0 +1,46 @@
+name: Stack Request
+description: Request support for a new language or framework
+labels: ["stack-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Want Genesis to support a new stack? Tell us about it.
+
+  - type: input
+    id: language
+    attributes:
+      label: Language
+      description: The primary programming language.
+      placeholder: e.g. Elixir, Swift, Dart
+    validations:
+      required: true
+
+  - type: input
+    id: framework
+    attributes:
+      label: Framework
+      description: The primary framework (if applicable).
+      placeholder: e.g. Phoenix, SwiftUI, Flutter
+
+  - type: textarea
+    id: conventions
+    attributes:
+      label: Key Conventions
+      description: What are the idiomatic patterns, tooling, and project structure for this stack?
+      placeholder: |
+        - Package manager: mix
+        - Formatter: mix format
+        - Test framework: ExUnit
+        - Typical folder structure: lib/, test/, config/
+    validations:
+      required: true
+
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Use Case
+      description: What kind of projects would you build with this stack using Genesis?
+      placeholder: e.g. Real-time web applications, mobile apps, IoT services
+    validations:
+      required: true

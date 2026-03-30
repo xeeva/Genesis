@@ -1,0 +1,57 @@
+name: Feature Request
+description: Suggest a new feature or improvement for Genesis
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have an idea to make Genesis better? Describe it below.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What problem does this feature solve? What pain point are you experiencing?
+      placeholder: When I try to scaffold a project with X, I find that...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: How would you like this to work?
+      placeholder: Genesis could automatically detect X and configure Y...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Which part of Genesis does this affect?
+      options:
+        - Interview phase
+        - Plan phase
+        - Generation phase
+        - Agent catalogue
+        - Stack profiles
+        - Skills
+        - Templates
+        - Documentation
+        - CLI/setup
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Have you considered any workarounds or alternative approaches?
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Any other context, screenshots, or examples.
